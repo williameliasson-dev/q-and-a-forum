@@ -34,7 +34,7 @@ const Navbar = () => {
           </div>
         </form>
         <button className={styles.loginbtn}>Log in</button>
-        <button>Sign up</button>
+        <button className={styles.signupbtn}>Sign up</button>
       </nav>
     </header>
   );
