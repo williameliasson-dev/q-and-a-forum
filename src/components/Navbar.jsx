@@ -1,13 +1,14 @@
 import React from "react";
 import Link from "next/link";
-import styles from "../styles/Navbar.module.scss";
+import styles from "@/styles/Navbar.module.scss";
+import Button from "./Button";
 
 const Navbar = () => {
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
         <button className={styles.menubutton}>
-          <img src="menu.svg"></img>{" "}
+          <img src="menu.svg"></img>
         </button>
         <Link href="/">
           <a className={styles.brand}>
@@ -33,8 +34,8 @@ const Navbar = () => {
             <input placeholder="Search..." type={"text"} />
           </div>
         </form>
-        <button className={styles.loginbtn}>Log in</button>
-        <button className={styles.signupbtn}>Sign up</button>
+        <Button variant={"btn"}>Log in</Button>
+        <Button variant={"blue"}>Sign up</Button>
       </nav>
     </header>
   );
