@@ -36,7 +36,6 @@ $nhgray: rgb(207, 207, 207);
 
 .headsection2 {
   display: flex;
-
   div {
     height: 40px;
     margin-left: auto;
@@ -46,6 +45,12 @@ $nhgray: rgb(207, 207, 207);
     border-radius: 6px;
     border: 1px solid gray;
   }
+  button:last-child {
+    margin-left: 1rem;
+    height: 40px;
+  }
+}
+.headsection2btn {
   button {
     height: 100%;
     margin: 0;

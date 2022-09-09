@@ -15,12 +15,13 @@ const questions = () => {
           </div>
           <div className={styles.headsection2}>
             <h2>22 questions</h2>
-            <div>
+            <div className={styles.headsection2btn}>
               <Button variant={"transparent"}>Newest</Button>
               <Button variant={"transparent"}>Active</Button>
               <Button variant={"transparent"}>Bountied</Button>
               <Button variant={"transparent"}>Unanswerd</Button>
             </div>
+            <Button variant={"btn"}>Filter</Button>
           </div>
         </header>
       </div>
