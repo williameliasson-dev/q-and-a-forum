@@ -30,7 +30,7 @@ const Navbar = () => {
         <form>
           <div className={styles.searchbar}>
             <img src="search.svg" className="h-6"></img>
-            <input type={"text"} className="w-full" />
+            <input placeholder="Search..." type={"text"} />
           </div>
         </form>
         <button className={styles.loginbtn}>Log in</button>

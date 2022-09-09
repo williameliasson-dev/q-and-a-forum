@@ -1,5 +1,4 @@
-$ablack: hsl(210,8%,35%);
-$nhgray: rgb(207, 207, 207);
+
 
 
 .header{
@@ -7,6 +6,8 @@ $nhgray: rgb(207, 207, 207);
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    background-color: white;
+    z-index: 100;
     top: 0;
     height: 50px;
     width: 100vw;
@@ -33,9 +34,9 @@ $nhgray: rgb(207, 207, 207);
         border-radius: 30px;
         width: 12rem;
         height: 3rem;
-        color: $ablack;
+        color: var(--ablack);
         &:hover {
-            background-color: $nhgray;
+            background-color: var(--nhgray);
             color: black;
         }
     }
@@ -52,7 +53,7 @@ $nhgray: rgb(207, 207, 207);
     border: none;
     background-color: white;
     &:hover {
-        background-color: $nhgray;
+        background-color: var(--nhgray);
     }
     img{
         object-fit: fill;
@@ -88,10 +89,10 @@ $nhgray: rgb(207, 207, 207);
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid $nhgray;
+    border: 1px solid var(--nhgray);
     border-radius: 4px;
     &:focus-within{
-        outline: 6px solid $nhgray;
+        outline: 4px solid var(--nhgray);
         border: 1px solid rgb(0, 157, 255);
     }
     input {
@@ -106,20 +107,27 @@ $nhgray: rgb(207, 207, 207);
 
 .loginbtn{
     font-size: 1.5rem;
+    cursor: pointer;
     margin-right: 5px;
     background-color: hsl(205,53%,88%);
     color: rgb(70, 119, 156);
     box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 70%);
     border-radius: 3px;
     height: 35px;
-    width: 80px;
+    min-width: 80px;
     border: 1px solid hsl(205,41%,63%);;
     opacity: 0.9;
+    &:hover{
+        background-color: rgb(179, 198, 212);
+    }
 }
 
 .signupbtn{
     @extend .loginbtn;
-    background-color: hsl(206,100%,52%);
+    background-color: var(--btnblue);
     color: white;
-    width: 90px;
+    min-width: 90px;
+    &:hover{
+        background-color: var(--btnhblue);
+    }
 }

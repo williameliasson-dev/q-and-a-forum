@@ -1,0 +1,18 @@
+$nhgray: rgb(207, 207, 207);
+
+.container {
+    position: relative;
+    display: flex;
+    width: min(1265px, 100vw);
+    margin: 0 auto;
+    font-size: 1.3rem;
+
+    
+}
+
+
+.questions {
+    width: 60%;
+    border-left: 1px solid $nhgray;
+    padding-bottom: 200%;
+}
