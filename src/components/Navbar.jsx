@@ -8,13 +8,13 @@ const Navbar = () => {
     <header className={styles.header}>
       <nav className={styles.nav}>
         <button className={styles.menubutton}>
-          <img src="menu.svg"></img>
+          <img src="/menu.svg"></img>
         </button>
         <Link href="/">
           <a className={styles.brand}>
             {" "}
             <img
-              src="logo-stackoverflow.svg"
+              src="/logo-stackoverflow.svg"
               className="h-[30px] object-fill m-2"
             ></img>{" "}
           </a>
@@ -30,7 +30,7 @@ const Navbar = () => {
         </Link>
         <form>
           <div className={styles.searchbar}>
-            <img src="search.svg" className="h-6"></img>
+            <img src="/search.svg" className="h-6"></img>
             <input placeholder="Search..." type={"text"} />
           </div>
         </form>
