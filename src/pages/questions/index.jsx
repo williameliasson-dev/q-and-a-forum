@@ -6,14 +6,11 @@ import LeftSidebar from "@/components/LeftSidebar";
 import Button from "@/components/Button";
 import connectDB from "@/../utils/connectDB";
 import Question from "@/../models/question";
+import { faker, swamp } from "fongus";
 
-const questions = ({ resQuestions }) => {
+const questions = ({ questions, questionsAmount }) => {
   const router = useRouter();
   let page = parseInt(router.query.page) || 0;
-
-  console.log(resQuestions);
-
-  const [questions, setQuestions] = useState([...resQuestions]);
 
   return (
     <div className={styles.container}>
@@ -27,7 +24,7 @@ const questions = ({ resQuestions }) => {
             </a>
           </div>
           <div className={styles["head-bottom"]}>
-            <h2>{questions.length} questions</h2>
+            <h2>{questionsAmount} questions</h2>
             <div className={styles["head-bottom-btn"]}>
               <Button variant={"transparent"}>Newest</Button>
               <Button variant={"transparent"}>Active</Button>
@@ -53,7 +50,7 @@ const questions = ({ resQuestions }) => {
                   <p>{questions.content}</p>
                   <div>
                     <span className={styles["question-meta"]}>
-                      <img src={`/${questions.userImg}`} />
+                      <img src={`${questions.userImg}`} />
                       <p>{questions.userName}</p>
                     </span>
                   </div>
@@ -89,14 +86,26 @@ const questions = ({ resQuestions }) => {
 
 export default questions;
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   await connectDB();
+  const questionsAmount = await Question.count();
 
-  const questions = await Question.find();
+  const docsPerPage = 20;
+  const maxPage = Math.ceil(questionsAmount / docsPerPage);
+
+  const page = Math.min(
+    maxPage,
+    context.query.page > 0 ? context.query.page : 1
+  );
+
+  const questions = await Question.find()
+    .limit(20)
+    .skip(20 * (page - 1));
 
   return {
     props: {
-      resQuestions: JSON.parse(JSON.stringify(questions)),
+      questions: JSON.parse(JSON.stringify(questions)),
+      questionsAmount,
     }, // will be passed to the page component as props
   };
 }

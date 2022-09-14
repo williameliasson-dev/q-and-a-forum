@@ -37,6 +37,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["autoprefixer", "virtual:03e33220cab391d39ca171676fd3aca76c248dd194c688e285323e877b09f6672dca44902b4f0001a7e2606ce100883dbd12b03fa654d97506413ac3a39285ff#npm:10.4.8"],\
             ["eslint", "npm:8.23.0"],\
             ["eslint-config-next", "virtual:03e33220cab391d39ca171676fd3aca76c248dd194c688e285323e877b09f6672dca44902b4f0001a7e2606ce100883dbd12b03fa654d97506413ac3a39285ff#npm:12.2.5"],\
+            ["fongus", "npm:0.1.1"],\
             ["mongodb", "npm:4.9.1"],\
             ["mongoose", "npm:6.6.0"],\
             ["next", "virtual:03e33220cab391d39ca171676fd3aca76c248dd194c688e285323e877b09f6672dca44902b4f0001a7e2606ce100883dbd12b03fa654d97506413ac3a39285ff#npm:12.2.5"],\
@@ -84,6 +85,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["js-yaml", "npm:4.1.0"],\
             ["minimatch", "npm:3.1.2"],\
             ["strip-json-comments", "npm:3.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@faker-js/faker", [\
+        ["npm:7.5.0", {\
+          "packageLocation": "./.yarn/cache/@faker-js-faker-npm-7.5.0-1dcb36d85a-6f2c48a801.zip/node_modules/@faker-js/faker/",\
+          "packageDependencies": [\
+            ["@faker-js/faker", "npm:7.5.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -1816,6 +1826,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["fongus", [\
+        ["npm:0.1.1", {\
+          "packageLocation": "./.yarn/cache/fongus-npm-0.1.1-a5bcf34629-11a1df09d8.zip/node_modules/fongus/",\
+          "packageDependencies": [\
+            ["fongus", "npm:0.1.1"],\
+            ["@faker-js/faker", "npm:7.5.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["fraction.js", [\
         ["npm:4.2.0", {\
           "packageLocation": "./.yarn/cache/fraction.js-npm-4.2.0-28efe4afc7-8c76a6e21d.zip/node_modules/fraction.js/",\
@@ -3434,6 +3454,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["autoprefixer", "virtual:03e33220cab391d39ca171676fd3aca76c248dd194c688e285323e877b09f6672dca44902b4f0001a7e2606ce100883dbd12b03fa654d97506413ac3a39285ff#npm:10.4.8"],\
             ["eslint", "npm:8.23.0"],\
             ["eslint-config-next", "virtual:03e33220cab391d39ca171676fd3aca76c248dd194c688e285323e877b09f6672dca44902b4f0001a7e2606ce100883dbd12b03fa654d97506413ac3a39285ff#npm:12.2.5"],\
+            ["fongus", "npm:0.1.1"],\
             ["mongodb", "npm:4.9.1"],\
             ["mongoose", "npm:6.6.0"],\
             ["next", "virtual:03e33220cab391d39ca171676fd3aca76c248dd194c688e285323e877b09f6672dca44902b4f0001a7e2606ce100883dbd12b03fa654d97506413ac3a39285ff#npm:12.2.5"],\

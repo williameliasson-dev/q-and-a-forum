@@ -41,6 +41,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@faker-js/faker@npm:^7.4.0":
+  version: 7.5.0
+  resolution: "@faker-js/faker@npm:7.5.0"
+  checksum: 6f2c48a8017d486eddfe2c3e0b743b810bcc948e5dbd1395c44a38471294584636f565cb081517ce90b634f50d8678d1d38d0f7b6b48b7d402e0a2602cf4f2d9
+  languageName: node
+  linkType: hard
+
 "@gar/promisify@npm:^1.1.3":
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
@@ -1379,6 +1386,15 @@ __metadata:
   version: 3.2.7
   resolution: "flatted@npm:3.2.7"
   checksum: 427633049d55bdb80201c68f7eb1cbd533e03eac541f97d3aecab8c5526f12a20ccecaeede08b57503e772c769e7f8680b37e8d482d1e5f8d7e2194687f9ea35
+  languageName: node
+  linkType: hard
+
+"fongus@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "fongus@npm:0.1.1"
+  dependencies:
+    "@faker-js/faker": ^7.4.0
+  checksum: 11a1df09d8bef069a376ebd1f9002f1c5b412de66f4ac369b4f721396bded5d3e1f51065d7e733abbaff8a3d605e1eb3029a91b59ba55000154f7c7dd10f38fd
   languageName: node
   linkType: hard
 
@@ -2804,6 +2820,7 @@ __metadata:
     autoprefixer: ^10.4.8
     eslint: 8.23.0
     eslint-config-next: 12.2.5
+    fongus: ^0.1.1
     mongodb: ^4.9.1
     mongoose: ^6.6.0
     next: 12.2.5
