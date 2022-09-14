@@ -4,45 +4,16 @@ import { useRouter } from "next/router";
 import styles from "@/styles/Questions.module.scss";
 import LeftSidebar from "@/components/LeftSidebar";
 import Button from "@/components/Button";
-import { fs } from "@/firebase";
-import {
-  collection,
-  getDocs,
-  limit,
-  query,
-  startAt,
-  orderBy,
-} from "firebase/firestore";
+import connectDB from "@/../utils/connectDB";
+import Question from "@/../models/question";
 
-const questions = () => {
+const questions = ({ resQuestions }) => {
   const router = useRouter();
-  let page = router.query.page || 0;
-  console.log(page);
+  let page = parseInt(router.query.page) || 0;
 
-  useEffect(() => {
-    if (page >= 1) {
-      console.log(page);
-      const q = query(
-        collection(fs, "questions"),
-        orderBy("title"),
-        limit(page * 10)
-      );
-      async function get() {
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-          console.log(doc.id, " => ", doc.data());
-        });
-        setQuestions(
-          querySnapshot.docs.slice(-10).map((doc) => {
-            return doc.data();
-          })
-        );
-      }
-      get();
-    }
-  }, [page]);
+  console.log(resQuestions);
 
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState([...resQuestions]);
 
   return (
     <div className={styles.container}>
@@ -94,18 +65,22 @@ const questions = () => {
         <Link
           href={{
             pathname: "/questions",
-            query: { page: page - 2 },
+            query: { page: Math.max(1, page - 1) },
           }}
         >
-          <Button>Prev</Button>
+          <a>
+            <Button>back</Button>
+          </a>
         </Link>
         <Link
           href={{
             pathname: "/questions",
-            query: { page: ++page },
+            query: { page: page + 1 },
           }}
         >
-          <Button>Next</Button>
+          <a>
+            <Button>Next</Button>
+          </a>
         </Link>
       </div>
     </div>
@@ -113,3 +88,15 @@ const questions = () => {
 };
 
 export default questions;
+
+export async function getStaticProps(context) {
+  await connectDB();
+
+  const questions = await Question.find();
+
+  return {
+    props: {
+      resQuestions: JSON.parse(JSON.stringify(questions)),
+    }, // will be passed to the page component as props
+  };
+}

@@ -1,7 +1,12 @@
 import React from "react";
 
 const ask = () => {
-  return <div>ask</div>;
+  return( <div>
+    <div>
+      
+    </div>
+    
+  </div>)
 };
 
 export default ask;
