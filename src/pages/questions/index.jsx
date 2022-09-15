@@ -7,10 +7,17 @@ import Button from "@/components/Button";
 import connectDB from "@/../utils/connectDB";
 import Question from "@/../models/question";
 import { faker, swamp } from "fongus";
+import Pagination from "@/components/Pagination/Pagination";
 
-const questions = ({ questions, questionsAmount }) => {
+const questions = ({ questions, questionsAmount, maxPage }) => {
   const router = useRouter();
   let page = parseInt(router.query.page) || 0;
+
+  function range(start, end) {
+    return Array(end - start + 1)
+      .fill()
+      .map((_, idx) => start + idx);
+  }
 
   return (
     <div className={styles.container}>
@@ -59,26 +66,9 @@ const questions = ({ questions, questionsAmount }) => {
             );
           })}
         </div>
-        <Link
-          href={{
-            pathname: "/questions",
-            query: { page: Math.max(1, page - 1) },
-          }}
-        >
-          <a>
-            <Button>back</Button>
-          </a>
-        </Link>
-        <Link
-          href={{
-            pathname: "/questions",
-            query: { page: page + 1 },
-          }}
-        >
-          <a>
-            <Button>Next</Button>
-          </a>
-        </Link>
+        <div className={styles.pagination}>
+          <Pagination maxPage={maxPage} page={page} />
+        </div>
       </div>
     </div>
   );
@@ -106,6 +96,7 @@ export async function getServerSideProps(context) {
     props: {
       questions: JSON.parse(JSON.stringify(questions)),
       questionsAmount,
+      maxPage,
     }, // will be passed to the page component as props
   };
 }

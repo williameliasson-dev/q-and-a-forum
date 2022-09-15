@@ -1,0 +1,19 @@
+.pagination {
+  .current {
+    background-color: hsl(27, 90%, 55%);
+    border: hsl(27, 90%, 55%);
+    color: white;
+  }
+  margin-top: 1rem;
+  a {
+    margin: 0 5px 0 5px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid var(--nhgray);
+    border-radius: 3px;
+    padding: 5px;
+    &:hover {
+      background-color: lightgray;
+    }
+  }
+}
