@@ -75,13 +75,15 @@ $nhgray: rgb(207, 207, 207);
 .question {
   position: relative;
   display: flex;
+  width: 100%;
   gap: 5rem;
   border-bottom: 1px solid var(--nhgray);
 }
 
 .question-content {
-  justify-content: flex-start;
   width: 100%;
+  padding-right: 8rem;
+  word-break: break-all;
   h1 {
     font-size: 2rem;
     flex-shrink: 0;
@@ -106,7 +108,10 @@ $nhgray: rgb(207, 207, 207);
 .question-meta {
   display: flex;
   align-items: center;
-  margin-right: 5rem;
+
+  p {
+    max-width: 100%;
+  }
   img {
     margin-left: auto;
     width: 2rem;

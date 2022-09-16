@@ -13,12 +13,6 @@ const questions = ({ questions, questionsAmount, maxPage }) => {
   const router = useRouter();
   let page = parseInt(router.query.page) || 0;
 
-  function range(start, end) {
-    return Array(end - start + 1)
-      .fill()
-      .map((_, idx) => start + idx);
-  }
-
   return (
     <div className={styles.container}>
       <LeftSidebar />
@@ -54,7 +48,7 @@ const questions = ({ questions, questionsAmount, maxPage }) => {
                 </div>
                 <div className={styles["question-content"]}>
                   <h1>{questions.title}</h1>
-                  <p>{questions.content}</p>
+                  <p>{questions.content.slice(0, 130)}</p>
                   <div>
                     <span className={styles["question-meta"]}>
                       <img src={`${questions.userImg}`} />
