@@ -7,7 +7,7 @@ const ask = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [tags, setTags] = useState("");
-  const [error, setError] = useState();
+  const [error, setError] = useState({ title: null, body: null, tags: null });
 
   const router = useRouter();
 
@@ -17,20 +17,26 @@ const ask = () => {
     tags,
   };
 
-  function validateQuestion() {
+  async function validateQuestion() {
+    let newError = { title: null, body: null, tags: null };
     if (title.length > 50 || title.length < 15) {
-      setError({
-        area: "title",
-        message: "Title cannot be longer than 50 or shorter than 15 characters",
-      });
-    } else {
-      setError(null);
+      newError.title =
+        "Title cannot be longer than 50 or shorter than 15 characters";
+      console.log(error.title);
+    }
+    if (content.length < 100 || content.length > 1000) {
+      newError.body =
+        "Body cannot be longer than 1000 or shorter than 100 characters";
+    }
+
+    if (!newError.body || !newError.tags || !newError.title) {
       postQuestion();
     }
+    setError(newError);
   }
 
   async function postQuestion(req, res) {
-    if (error) return;
+    if (error.title || error.body) return;
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const requestOptions = {
@@ -60,10 +66,16 @@ const ask = () => {
               Be specific and imagine you’re asking a question to another person
             </p>
             <input
+              className={error.title ? styles.inputerror : ""}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
             />
+            {error.title && (
+              <div className={styles.error}>
+                <p>{error.title}</p>
+              </div>
+            )}
           </div>
           <div className={styles["ask-body"]}>
             <h2>Body</h2>
@@ -72,9 +84,15 @@ const ask = () => {
               question
             </p>
             <textarea
+              className={error.title ? styles.inputerror : ""}
               value={content}
               onChange={(e) => setContent(e.target.value)}
             />
+            {error.body && (
+              <div className={styles.error}>
+                <p>{error.body}</p>
+              </div>
+            )}
           </div>
           <div className={styles["ask-tags"]}>
             <h2>Tags</h2>

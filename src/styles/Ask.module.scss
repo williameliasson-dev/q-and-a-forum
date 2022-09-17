@@ -63,3 +63,16 @@
     height: 45px;
   }
 }
+
+.error {
+  margin-top: 0rem;
+  color: red;
+}
+
+.inputerror {
+  outline: 1px solid red;
+  &:focus {
+    outline: 4px solid var(--nhgray) !important;
+    border: 1px solid red !important;
+  }
+}

@@ -47,7 +47,12 @@ const questions = ({ questions, questionsAmount, maxPage }) => {
                   <span>0 views</span>
                 </div>
                 <div className={styles["question-content"]}>
-                  <h1>{questions.title}</h1>
+                  <Link href={`questions/${questions._id}`}>
+                    <a>
+                      <h1>{questions.title}</h1>
+                    </a>
+                  </Link>
+
                   <p>{questions.content.slice(0, 130)}</p>
                   <div>
                     <span className={styles["question-meta"]}>
