@@ -24,9 +24,13 @@ const QuestionId = ({ question }) => {
 
         <div className={styles["question-content"]}>
           <div className={styles.voting}>
-            <Button>+</Button>
-            <p>0</p>
-            <Button>-</Button>
+            <Button>
+              <img src="/triangle.svg"></img>
+            </Button>
+            <span>0</span>
+            <Button>
+              <img src="/triangle.svg"></img>
+            </Button>
           </div>
           <p>{question.content}</p>
         </div>
@@ -46,6 +50,7 @@ export async function getStaticProps(context) {
     props: {
       question: JSON.parse(JSON.stringify(question)),
     },
+    revalidate: 10,
   };
 }
 
@@ -59,6 +64,6 @@ export async function getStaticPaths() {
   });
   return {
     paths,
-    fallback: false, // false or 'blocking'
+    fallback: "blocking", // false or 'blocking'
   };
 }

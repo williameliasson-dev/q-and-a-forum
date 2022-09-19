@@ -39,7 +39,6 @@ export default function renderDates(createdAt) {
 
   let seconds = delta % 60; // in theory the modulus is not required
 
-  console.log(weeks, days, hours, minutes);
   if (hours <= 0 && days === 0 && minutes === 0) {
     return `${Math.ceil(seconds)} seconds`;
   }
@@ -64,5 +63,5 @@ export default function renderDates(createdAt) {
   if (weeks >= 1 && days >= 1) {
     return `${weeks} week${wSuffix} and ${days}`;
   }
-  return "DATE ERROR - PLEASE CONTACT SUPPORT";
+  return "- DATE ERROR: Please report this <3 -";
 }
