@@ -19,9 +19,9 @@ const ask = () => {
 
   async function validateQuestion() {
     let newError = { title: null, body: null, tags: null };
-    if (title.length > 50 || title.length < 15) {
+    if (title.length > 100 || title.length < 15) {
       newError.title =
-        "Title cannot be longer than 50 or shorter than 15 characters";
+        "Title cannot be longer than 100 or shorter than 15 characters";
       console.log(error.title);
     }
     if (content.length < 100 || content.length > 1000) {

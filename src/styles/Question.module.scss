@@ -11,13 +11,16 @@
 }
 
 .question-top {
+  margin-left: 3rem;
   border-bottom: 1px solid var(--nhgray);
 }
 
 .question-content {
+  margin-left: 3rem;
   display: flex;
   margin-top: 2rem;
   word-break: break-all;
+  white-space: pre-wrap;
 }
 
 .voting {
