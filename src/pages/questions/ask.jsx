@@ -29,7 +29,7 @@ const ask = () => {
         "Body cannot be longer than 1000 or shorter than 100 characters";
     }
 
-    if (!newError.body || !newError.tags || !newError.title) {
+    if (!newError.body && !newError.tags && !newError.title) {
       postQuestion();
     }
     setError(newError);

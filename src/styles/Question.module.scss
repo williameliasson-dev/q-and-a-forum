@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  width: min(1265px, 100vw);
+  margin: auto;
+  font-size: 1.3rem;
+}
+
+.question {
+  width: 40vw;
+  border-left: 1px solid var(--nhgray);
+}
+
+.question-top {
+  border-bottom: 1px solid var(--nhgray);
+}
+
+.question-content {
+  display: flex;
+  margin-top: 2rem;
+  word-break: break-all;
+}
+
+.voting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
