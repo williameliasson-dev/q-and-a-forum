@@ -35,7 +35,7 @@ const ask = () => {
     setError(newError);
   }
 
-  async function postQuestion(req, res) {
+  async function postQuestion() {
     if (error.title || error.body) return;
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");

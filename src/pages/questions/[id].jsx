@@ -7,9 +7,34 @@ import Button from "@/components/Button";
 import renderDates from "utils/renderDates";
 
 const QuestionId = ({ question }) => {
+  const [voteType, setVoteType] = useState("");
+
   useEffect(() => {
     renderDates();
   }, []);
+
+  async function postVote(type) {
+    const vote = {
+      qid: question._id,
+      type,
+    };
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: JSON.stringify(vote),
+      redirect: "follow",
+    };
+
+    const response = await fetch(
+      "http://localhost:3000/api/votes/create",
+      requestOptions
+    );
+    const data = await response.json();
+    console.log(data);
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -22,12 +47,12 @@ const QuestionId = ({ question }) => {
 
         <div className={styles["question-content"]}>
           <div className={styles.voting}>
-            <Button>
-              <img src="/triangle.svg"></img>
+            <Button onClick={() => postVote("up")}>
+              <img alt="upvote" src="/triangle.svg"></img>
             </Button>
             <span>0</span>
-            <Button>
-              <img src="/triangle.svg"></img>
+            <Button onClick={() => postVote("down")}>
+              <img alt="downvote" src="/triangle.svg"></img>
             </Button>
           </div>
           <p>{question.content}</p>
@@ -43,7 +68,7 @@ export async function getStaticProps(context) {
   const questionId = context.params.id;
   await connectDB();
 
-  const question = await Question.findById(questionId).select({ _id: 0 });
+  const question = await Question.findById(questionId);
   return {
     props: {
       question: JSON.parse(JSON.stringify(question)),

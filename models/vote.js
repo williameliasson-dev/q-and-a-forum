@@ -1,19 +1,16 @@
 import { Schema, model, models } from "mongoose";
 
-const questionSchema = new Schema(
+const voteSchema = new Schema(
   {
-    title: { type: "String", required: true },
-    content: { type: "String", required: true },
-    tags: { type: "Array", required: true },
-    userName: { type: "String", required: true },
-    userId: { type: "String", required: true },
-    userImg: { type: "String", required: true },
+    qid: { type: "String", required: true },
+    type: { type: "String", required: true },
+    userEmail: { type: "String", required: true },
   },
   {
     timestamps: true,
   }
 );
 
-const Question = models.Question || model("Question", questionSchema);
+const Vote = models.Vote || model("Vote", voteSchema);
 
-export default Question;
+export default Vote;
