@@ -7,8 +7,6 @@ import Button from "@/components/Button";
 import renderDates from "utils/renderDates";
 
 const QuestionId = ({ question }) => {
-  const [sinceCreation, setSinceCreation] = useState("");
-
   useEffect(() => {
     renderDates();
   }, []);

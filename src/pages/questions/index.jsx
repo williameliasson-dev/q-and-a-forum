@@ -6,12 +6,16 @@ import LeftSidebar from "@/components/LeftSidebar";
 import Button from "@/components/Button";
 import connectDB from "@/../utils/connectDB";
 import Question from "@/../models/question";
-import { faker, swamp } from "fongus";
+import renderDates from "utils/renderDates";
 import Pagination from "@/components/Pagination/Pagination";
 
 const questions = ({ questions, questionsAmount, maxPage }) => {
   const router = useRouter();
   let page = parseInt(router.query.page) || 0;
+
+  useEffect(() => {
+    renderDates();
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -58,6 +62,7 @@ const questions = ({ questions, questionsAmount, maxPage }) => {
                     <span className={styles["question-meta"]}>
                       <img src={`${questions.userImg}`} />
                       <p>{questions.userName}</p>
+                      <p>asked {renderDates(questions.createdAt)} ago</p>
                     </span>
                   </div>
                 </div>
