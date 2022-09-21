@@ -21,7 +21,15 @@ export default async function handler(req, res) {
       userEmail: session.user.email,
     });
 
-    if (userQuestionVotes.type != req.body.type) {
+    if (!userQuestionVotes) {
+      const newVote = {
+        qid: req.body.qid,
+        type: req.body.type,
+        userEmail: session.user.email,
+      };
+      const savedVote = await Vote.create(newVote);
+      res.status(200).send({ message: "1 doc inserted", savedVote });
+    } else if (userQuestionVotes.type != req.body.type) {
       let type = () => {
         if (userQuestionVotes.type === "up") {
           return "down";
@@ -36,14 +44,6 @@ export default async function handler(req, res) {
         { type: type() }
       );
       return res.status(200).send({ message: "updated vote" });
-    } else if (!userQuestionVotes) {
-      const newVote = {
-        qid: req.body.qid,
-        type: req.body.type,
-        userEmail: session.user.email,
-      };
-      const savedVote = await Vote.create(newVote);
-      res.status(200).send({ message: "1 doc inserted", savedVote });
-    } else res.status(401).send({ message: "vote already casted" });
+    } else return res.status(401).send({ message: "vote already casted" });
   } else return res.status(418).send({ message: "invalid method" });
 }

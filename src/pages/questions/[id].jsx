@@ -2,16 +2,30 @@ import React, { useState, useEffect } from "react";
 import LeftSidebar from "@/components/LeftSidebar";
 import styles from "@/styles/Question.module.scss";
 import Question from "models/question";
+import Vote from "models/vote";
 import connectDB from "utils/connectDB";
 import Button from "@/components/Button";
 import renderDates from "utils/renderDates";
 
-const QuestionId = ({ question }) => {
+const QuestionId = ({ question, votes }) => {
   const [voteType, setVoteType] = useState("");
+  const [voteCount, setVoteCount] = useState(0);
 
   useEffect(() => {
     renderDates();
+    countVotes();
   }, []);
+
+  function countVotes() {
+    votes.forEach((vote) => {
+      if (vote.type === "up") {
+        setVoteCount(voteCount++);
+      }
+      if (vote.type === "down") {
+        setVoteCount(voteCount--);
+      }
+    });
+  }
 
   async function postVote(type) {
     const vote = {
@@ -50,7 +64,7 @@ const QuestionId = ({ question }) => {
             <Button onClick={() => postVote("up")}>
               <img alt="upvote" src="/triangle.svg"></img>
             </Button>
-            <span>0</span>
+            <span>{voteCount}</span>
             <Button onClick={() => postVote("down")}>
               <img alt="downvote" src="/triangle.svg"></img>
             </Button>
@@ -69,9 +83,12 @@ export async function getStaticProps(context) {
   await connectDB();
 
   const question = await Question.findById(questionId);
+  const votes = await Vote.find({ qid: questionId });
+
   return {
     props: {
       question: JSON.parse(JSON.stringify(question)),
+      votes: JSON.parse(JSON.stringify(votes)),
     },
     revalidate: 10,
   };
