@@ -43,7 +43,8 @@ export default async function handler(req, res) {
         },
         { type: type() }
       );
-      return res.status(200).send({ message: "updated vote" });
+      await res.revalidate(`/questions/${req.body.qid}`);
+      return res.json({ revalidated: true });
     } else return res.status(401).send({ message: "vote already casted" });
   } else return res.status(418).send({ message: "invalid method" });
 }

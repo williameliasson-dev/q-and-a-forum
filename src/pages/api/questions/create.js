@@ -24,7 +24,7 @@ export default async function handler(req, res) {
       userImg: session.user.image,
     };
     const savedDoc = await Question.create(newQuestion);
-    res.status(200).send({ message: "1 doc inserted", savedDoc });
-    return;
+    await res.revalidate(`/questions/${savedDoc._id}`);
+    return res.status(200).send({ message: "1 doc inserted", savedDoc });
   } else return res.status(418).send({ message: "invalid method" });
 }

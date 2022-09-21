@@ -8,13 +8,13 @@ import Button from "@/components/Button";
 import renderDates from "utils/renderDates";
 
 const QuestionId = ({ question, votes }) => {
-  const [voteType, setVoteType] = useState("");
   const [voteCount, setVoteCount] = useState(0);
+  const [data, setData] = useState("");
 
   useEffect(() => {
     renderDates();
     countVotes();
-  }, []);
+  }, [data]);
 
   function countVotes() {
     votes.forEach((vote) => {
@@ -47,7 +47,7 @@ const QuestionId = ({ question, votes }) => {
       requestOptions
     );
     const data = await response.json();
-    console.log(data);
+    setData(data);
   }
 
   return (
@@ -90,7 +90,6 @@ export async function getStaticProps(context) {
       question: JSON.parse(JSON.stringify(question)),
       votes: JSON.parse(JSON.stringify(votes)),
     },
-    revalidate: 10,
   };
 }
 
