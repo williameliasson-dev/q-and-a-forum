@@ -8,24 +8,14 @@ import Button from "@/components/Button";
 import renderDates from "utils/renderDates";
 
 const QuestionId = ({ question, votes }) => {
-  const [voteCount, setVoteCount] = useState(0);
-  const [data, setData] = useState("");
+  const voteCount = votes.reduce(
+    (prev, current) => prev + (current.type === "up" ? 1 : -1),
+    0
+  );
 
   useEffect(() => {
     renderDates();
-    countVotes();
-  }, [data]);
-
-  function countVotes() {
-    votes.forEach((vote) => {
-      if (vote.type === "up") {
-        setVoteCount(voteCount++);
-      }
-      if (vote.type === "down") {
-        setVoteCount(voteCount--);
-      }
-    });
-  }
+  }, []);
 
   async function postVote(type) {
     const vote = {
@@ -46,8 +36,6 @@ const QuestionId = ({ question, votes }) => {
       "http://localhost:3000/api/votes/create",
       requestOptions
     );
-    const data = await response.json();
-    setData(data);
   }
 
   return (

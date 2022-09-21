@@ -11,8 +11,6 @@ export default async function handler(req, res) {
     return;
   }
 
-  console.log(session);
-
   if (req.method === "POST") {
     await connectDB();
 
