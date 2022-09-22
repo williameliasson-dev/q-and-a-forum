@@ -6,10 +6,11 @@ import LeftSidebar from "@/components/LeftSidebar";
 import Button from "@/components/Button";
 import connectDB from "@/../utils/connectDB";
 import Question from "@/../models/question";
+import Vote from "models/vote";
 import renderDates from "utils/renderDates";
 import Pagination from "@/components/Pagination/Pagination";
 
-const questions = ({ questions, questionsAmount, maxPage }) => {
+const questions = ({ questions, questionsAmount, maxPage, votes }) => {
   const router = useRouter();
   let page = parseInt(router.query.page) || 0;
 
@@ -46,7 +47,11 @@ const questions = ({ questions, questionsAmount, maxPage }) => {
             return (
               <div className={styles["question"]} key={i}>
                 <div className={styles["question-stats"]}>
-                  <span>0 votes</span>
+                  <span>
+                    {votes[i]} {votes[i] === 1 && "vote"}
+                    {votes[i] === 0 && "votes"}
+                    {votes[i] > 1 && "votes"}
+                  </span>
                   <span>0 answers</span>
                   <span>0 views</span>
                 </div>
@@ -96,8 +101,13 @@ export async function getServerSideProps(context) {
     .limit(20)
     .skip(20 * (page - 1));
 
+  const votes = await Promise.all(
+    questions.map(async (q) => await Vote.countDocuments({ qid: q._id }))
+  );
+
   return {
     props: {
+      votes,
       questions: JSON.parse(JSON.stringify(questions)),
       questionsAmount,
       maxPage,

@@ -17,7 +17,7 @@ const ask = () => {
     tags,
   };
 
-  async function validateQuestion() {
+  function validateQuestion() {
     let newError = { title: null, body: null, tags: null };
     if (title.length > 100 || title.length < 15) {
       newError.title =
