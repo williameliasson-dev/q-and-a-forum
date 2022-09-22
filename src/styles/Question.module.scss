@@ -14,6 +14,9 @@
     margin-left: 3rem;
     margin-right: 3rem;
     border-bottom: 1px solid var(--nhgray);
+    h1 {
+      font-weight: 400;
+    }
   }
 
   .question-content {
@@ -53,18 +56,24 @@
 }
 
 .comments {
+  h2 {
+    margin-left: 3rem;
+    font-weight: 400;
+    font-size: 2rem;
+  }
   .comment {
     width: 90%;
     margin: 0 auto;
     border-bottom: 1px solid var(--nhgray);
     display: flex;
+    flex-direction: column;
     white-space: pre-wrap;
     .comment-meta {
       display: flex;
       margin-left: auto;
       min-width: 16rem;
       align-items: flex-start;
-      justify-content: end;
+      justify-content: flex-end;
       flex-direction: column;
       p:nth-last-child(2) {
         margin-left: auto;

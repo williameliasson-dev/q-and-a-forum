@@ -13,8 +13,6 @@ const QuestionId = ({ question, votes, comments }) => {
   const [comment, setComment] = useState("");
   const router = useRouter();
 
-  console.log(comments);
-
   const newComment = {
     qid: router.query.id,
     content: comment,
@@ -86,7 +84,9 @@ const QuestionId = ({ question, votes, comments }) => {
           </div>
           <p>{question.content}</p>
         </div>
+
         <div className={styles.comments}>
+          <h2>{comments.length} Answers</h2>
           {comments.map((comment, i) => {
             return (
               <div key={i} className={styles.comment}>
