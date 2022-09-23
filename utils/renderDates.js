@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {Date} createdAt
+ * @returns Date diff in text
+ */
 export default function renderDates(createdAt) {
   const curTime = new Date();
   const postTime = new Date(createdAt);

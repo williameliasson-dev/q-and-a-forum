@@ -86,7 +86,10 @@ const QuestionId = ({ question, votes, comments }) => {
         </div>
 
         <div className={styles.comments}>
-          <h2>{comments.length} Answers</h2>
+          <h2>
+            {comments.length} {comments.length === 1 && "Answer"}
+            {comments.length != 1 && "Answers"}
+          </h2>
           {comments.map((comment, i) => {
             return (
               <div key={i} className={styles.comment}>
