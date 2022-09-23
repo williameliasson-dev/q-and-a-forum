@@ -4,7 +4,7 @@ const commentSchema = new Schema(
   {
     qid: { type: "String", required: true },
     content: { type: "String", required: true },
-    type: { type: "Boolean", default: false, required: true },
+    solution: { type: "Boolean", default: false, required: true },
     userName: { type: "String", required: true },
     userEmail: { type: "String", required: true },
     userImg: { type: "String", required: true },
