@@ -11,8 +11,6 @@ export default async function handler(req, res) {
     return;
   }
 
-  console.log(session);
-
   if (req.method === "POST") {
     await connectDB();
 
@@ -20,7 +18,7 @@ export default async function handler(req, res) {
       title: req.body.title,
       content: req.body.content,
       userName: session.user.name,
-      userId: session.user.name,
+      userId: session.user._id,
       userImg: session.user.image,
     };
     const savedDoc = await Question.create(newQuestion);

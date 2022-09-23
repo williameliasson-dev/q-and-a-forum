@@ -18,7 +18,7 @@ export default async function handler(req, res) {
       qid: req.body.qid,
       content: req.body.content,
       userName: session.user.name,
-      userEmail: session.user.email,
+      userId: session.user._id,
       userImg: session.user.image,
     };
     const savedDoc = await Comment.create(newComment);
