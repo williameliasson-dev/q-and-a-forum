@@ -7,6 +7,7 @@ export default function renderDates(createdAt) {
   const curTime = new Date();
   const postTime = new Date(createdAt);
   let wSuffix;
+  let dSuffix;
   let hSuffix;
   let mSuffix;
 
@@ -28,6 +29,11 @@ export default function renderDates(createdAt) {
     wSuffix = "s";
   } else {
     wSuffix = "";
+  }
+  if (days > 1) {
+    dSuffix = "s";
+  } else {
+    dSuffix = "";
   }
 
   if (hours > 1) {
@@ -66,7 +72,7 @@ export default function renderDates(createdAt) {
     return `${weeks} week${wSuffix} `;
   }
   if (weeks >= 1 && days >= 1) {
-    return `${weeks} week${wSuffix} and ${days}`;
+    return `${weeks} week${wSuffix} and ${days} day${dSuffix}`;
   }
   return "- DATE ERROR: Please report this <3 -";
 }

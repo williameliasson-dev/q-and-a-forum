@@ -23,7 +23,7 @@ export default async function handler(req, res) {
       const newVote = {
         qid: req.body.qid,
         type: req.body.type,
-        userEmail: session.user.email,
+        userId: session.user._id,
       };
       const savedVote = await Vote.create(newVote);
       res.status(200).send({ message: "1 doc inserted", savedVote });

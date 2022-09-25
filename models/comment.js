@@ -6,7 +6,7 @@ const commentSchema = new Schema(
     content: { type: "String", required: true },
     solution: { type: "Boolean", default: false, required: true },
     userName: { type: "String", required: true },
-    userEmail: { type: "String", required: true },
+    userId: { type: "String", required: true },
     userImg: { type: "String", required: true },
   },
   {
