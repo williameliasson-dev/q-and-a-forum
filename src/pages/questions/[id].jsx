@@ -46,7 +46,7 @@ const QuestionId = ({ question, votes, comments }) => {
       redirect: "follow",
     };
 
-    await fetch("http://localhost:3000/api/comments/create", requestOptions);
+    await fetch("http://localhost:3000/api/questions/solution", requestOptions);
   }
 
   async function postComment() {
@@ -119,7 +119,13 @@ const QuestionId = ({ question, votes, comments }) => {
               <div key={i} className={styles.comment}>
                 <p>{comment.content}</p>
                 {question.userId === session?.user?._id && (
-                  <button>Mark as answer</button>
+                  <button
+                    onClick={() => {
+                      postSolution(comment._id);
+                    }}
+                  >
+                    Mark as answer
+                  </button>
                 )}
                 <div className={styles["comment-meta"]}>
                   <p>answered {renderDates(comment.createdAt)} ago</p>
