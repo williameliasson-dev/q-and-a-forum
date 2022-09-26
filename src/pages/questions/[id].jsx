@@ -16,8 +16,6 @@ const QuestionId = ({ question, votes, comments }) => {
 
   const router = useRouter();
 
-  const isOp = () => session?.user?._id === question.userId;
-
   const newComment = {
     qid: router.query.id,
     content: comment,
@@ -27,8 +25,6 @@ const QuestionId = ({ question, votes, comments }) => {
     (prev, current) => prev + (current.type === "up" ? 1 : -1),
     0
   );
-
-  console.log(session);
 
   async function postSolution(cid) {
     const solutionData = {
@@ -117,7 +113,9 @@ const QuestionId = ({ question, votes, comments }) => {
           {comments.map((comment, i) => {
             return (
               <div key={i} className={styles.comment}>
+                {question.solution === comment._id && <img src="/check.svg" />}
                 <p>{comment.content}</p>
+
                 {question.userId === session?.user?._id && (
                   <button
                     onClick={() => {

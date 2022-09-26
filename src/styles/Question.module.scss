@@ -89,7 +89,7 @@
     margin: 0 auto;
     border-bottom: 1px solid var(--nhgray);
     display: flex;
-    flex-direction: column;
+
     white-space: pre-wrap;
     button {
       color: lightgray;
@@ -128,8 +128,8 @@
 .comment-post {
   display: flex;
   width: 90%;
-  margin: 0 auto;
   flex-direction: column;
+  margin: 0 auto;
   textarea {
     min-height: 20rem;
     resize: vertical;
