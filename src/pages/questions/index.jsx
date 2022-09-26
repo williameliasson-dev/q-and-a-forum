@@ -14,6 +14,17 @@ const questions = ({ questions, questionsAmount, maxPage, votes }) => {
   const router = useRouter();
   let page = parseInt(router.query.page) || 0;
 
+  async function test() {
+    return await fetch("https://api.github.com/users");
+  }
+
+  function test2() {
+    const a = test();
+    return a;
+  }
+
+  console.log(test2());
+
   useEffect(() => {
     renderDates();
   }, []);

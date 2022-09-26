@@ -14,10 +14,7 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     await connectDB();
 
-    Comment.findOneAndModify(
-      { _id: req.body.cid },
-      { solution: req.body.solution }
-    );
+    Comment.findOneAndModify({ _id: req.body.qid }, { solution: req.body.cid });
     await res.revalidate(`/questions/${req.body.qid}`);
     return res.status(200).send({ message: "1 doc modified" });
   } else return res.status(418).send({ message: "invalid method" });

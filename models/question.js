@@ -4,6 +4,7 @@ const questionSchema = new Schema(
   {
     title: { type: "String", required: true },
     content: { type: "String", required: true },
+    solution: { type: "String", required: false },
     tags: { type: "Array", required: true },
     userName: { type: "String", required: true },
     userId: { type: "String", required: true },

@@ -8,10 +8,15 @@ import Comment from "models/comment";
 import connectDB from "utils/connectDB";
 import Button from "@/components/Button";
 import renderDates from "utils/renderDates";
+import { useSession } from "next-auth/react";
 
 const QuestionId = ({ question, votes, comments }) => {
   const [comment, setComment] = useState("");
+  const { data: session } = useSession();
+
   const router = useRouter();
+
+  const isOp = () => session?.user?._id === question.userId;
 
   const newComment = {
     qid: router.query.id,
@@ -23,9 +28,26 @@ const QuestionId = ({ question, votes, comments }) => {
     0
   );
 
-  useEffect(() => {
-    renderDates();
-  }, []);
+  console.log(session);
+
+  async function postSolution(cid) {
+    const solutionData = {
+      qid: router.query.id,
+      uid: session?.user?._id,
+      cid: cid,
+    };
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: JSON.stringify(solutionData),
+      redirect: "follow",
+    };
+
+    await fetch("http://localhost:3000/api/comments/create", requestOptions);
+  }
 
   async function postComment() {
     const myHeaders = new Headers();
@@ -37,10 +59,7 @@ const QuestionId = ({ question, votes, comments }) => {
       redirect: "follow",
     };
 
-    const response = await fetch(
-      "http://localhost:3000/api/comments/create",
-      requestOptions
-    );
+    await fetch("http://localhost:3000/api/comments/create", requestOptions);
   }
 
   async function postVote(type) {
@@ -58,10 +77,7 @@ const QuestionId = ({ question, votes, comments }) => {
       redirect: "follow",
     };
 
-    const response = await fetch(
-      "http://localhost:3000/api/votes/create",
-      requestOptions
-    );
+    await fetch("http://localhost:3000/api/votes/create", requestOptions);
   }
 
   return (
@@ -72,17 +88,25 @@ const QuestionId = ({ question, votes, comments }) => {
           <h1>{question.title}</h1>
           <p>Asked {renderDates(question.createdAt)} ago</p>
         </div>
-        <div className={styles["question-content"]}>
-          <div className={styles.voting}>
-            <Button onClick={() => postVote("up")}>
-              <img alt="upvote" src="/triangle.svg"></img>
-            </Button>
-            <span>{voteCount}</span>
-            <Button onClick={() => postVote("down")}>
-              <img alt="downvote" src="/triangle.svg"></img>
-            </Button>
+        <div className={styles["question-info"]}>
+          <div className={styles["question-content"]}>
+            <div className={styles.voting}>
+              <Button onClick={() => postVote("up")}>
+                <img alt="upvote" src="/triangle.svg"></img>
+              </Button>
+              <p>{voteCount}</p>
+              <Button onClick={() => postVote("down")}>
+                <img alt="downvote" src="/triangle.svg"></img>
+              </Button>
+            </div>
+            <p>{question.content}</p>
           </div>
-          <p>{question.content}</p>
+          <div className={styles["question-meta"]}>
+            <span>
+              <img src={`${question.userImg}`}></img>
+              <p>{`${question.userName}`}</p>
+            </span>
+          </div>
         </div>
 
         <div className={styles.comments}>
@@ -94,6 +118,9 @@ const QuestionId = ({ question, votes, comments }) => {
             return (
               <div key={i} className={styles.comment}>
                 <p>{comment.content}</p>
+                {question.userId === session?.user?._id && (
+                  <button>Mark as answer</button>
+                )}
                 <div className={styles["comment-meta"]}>
                   <p>answered {renderDates(comment.createdAt)} ago</p>
                   <div className={styles["comment-meta-user"]}>
@@ -140,15 +167,15 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  await connectDB();
+  // await connectDB();
 
-  const questions = await Question.find({}).select("_id");
+  // const questions = await Question.find({}).select("_id");
 
-  const paths = questions.map((questions) => {
-    return { params: { id: questions._id.toString() } };
-  });
+  // const paths = questions.map((questions) => {
+  //   return { params: { id: questions._id.toString() } };
+  // });
   return {
-    paths,
+    paths: [],
     fallback: "blocking", // false or 'blocking'
   };
 }

@@ -14,7 +14,7 @@ export const authOptions = {
     // ...add more providers here
   ],
   callbacks: {
-    async session({ session, token, user }) {
+    async session({ session, user }) {
       session.user._id = user.id;
       return session;
     },
