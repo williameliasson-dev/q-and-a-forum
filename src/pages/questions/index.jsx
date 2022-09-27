@@ -35,8 +35,8 @@ const questions = ({ questions, questionsAmount, maxPage, votes }) => {
               <Button variant={"transparent"}>Newest</Button>
               <Button variant={"transparent"}>Active</Button>
               <Button variant={"transparent"}>Bountied</Button>
-              <Link href={`/questions?page=${page}&filter=unanswerd`}>
-                <Button variant={"transparent"}>Unanswerd</Button>
+              <Link href={`/questions?page=${page}&filter=unanswered`}>
+                <Button variant={"transparent"}>Unanswered</Button>
               </Link>
             </div>
             <Button variant={"btn"}>
@@ -100,7 +100,7 @@ export async function getServerSideProps(context) {
   );
 
   const filterQuestions = async () => {
-    if (context.query.filter === "unanswerd") {
+    if (context.query.filter === "unanswered") {
       return await Question.find({ solution: undefined })
         .limit(20)
         .skip(20 * (page - 1));
