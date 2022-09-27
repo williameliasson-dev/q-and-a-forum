@@ -32,9 +32,6 @@ const Navbar = () => {
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
-        <button className={styles.menubutton}>
-          <img src="/menu.svg"></img>
-        </button>
         <Link href="/">
           <a className={styles.brand}>
             {" "}
@@ -47,8 +44,8 @@ const Navbar = () => {
         <Link href="/">
           <a>Home</a>
         </Link>
-        <Link href="/questions">
-          <a>About</a>
+        <Link href="/questions?page=0&filter=newest">
+          <a>Questions</a>
         </Link>
         <Link href="/">
           <a>Github</a>

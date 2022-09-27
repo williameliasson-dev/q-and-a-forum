@@ -32,9 +32,9 @@ const questions = ({ questions, questionsAmount, maxPage, votes }) => {
           <div className={styles["head-bottom"]}>
             <h2>{questionsAmount} questions</h2>
             <div className={styles["head-bottom-btn"]}>
-              <Button variant={"transparent"}>Newest</Button>
-              <Button variant={"transparent"}>Active</Button>
-              <Button variant={"transparent"}>Bountied</Button>
+              <Link href={`/questions?page=${page}&filter=newest`}>
+                <Button variant={"transparent"}>Newest</Button>
+              </Link>
               <Link href={`/questions?page=${page}&filter=unanswered`}>
                 <Button variant={"transparent"}>Unanswered</Button>
               </Link>
@@ -105,8 +105,8 @@ export async function getServerSideProps(context) {
         .limit(20)
         .skip(20 * (page - 1));
     }
-    if (context.query.filter === "active") {
-      return { solution: undefined };
+    if (context.query.filter === "newest") {
+      return await Question.find({}).sort("-createdAt");
     }
     return await Question.find()
       .limit(20)

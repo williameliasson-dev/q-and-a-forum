@@ -59,6 +59,9 @@ export default function renderDates(createdAt) {
   if (hours >= 1 && days === 0) {
     return `${hours} hour${hSuffix}`;
   }
+  if (days >= 1 && hours < 1) {
+    return `${days} day${dSuffix}`;
+  }
   if (days >= 1 && days < 2 && hours > 0) {
     return `1 day and ${hours} hour${hSuffix}  `;
   }
