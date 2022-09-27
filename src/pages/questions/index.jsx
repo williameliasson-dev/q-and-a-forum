@@ -7,10 +7,17 @@ import Button from "@/components/Button";
 import connectDB from "@/../utils/connectDB";
 import Question from "@/../models/question";
 import Vote from "models/vote";
+import Comment from "models/comment";
 import renderDates from "utils/renderDates";
 import Pagination from "@/components/Pagination/Pagination";
 
-const questions = ({ questions, questionsAmount, maxPage, votes }) => {
+const questions = ({
+  questions,
+  questionsAmount,
+  maxPage,
+  votes,
+  comments,
+}) => {
   const router = useRouter();
   let page = parseInt(router.query.page) || 0;
 
@@ -54,8 +61,12 @@ const questions = ({ questions, questionsAmount, maxPage, votes }) => {
                     {votes[i] === 0 && "votes"}
                     {votes[i] > 1 && "votes"}
                   </span>
-                  <span>0 answers</span>
-                  <span>0 views</span>
+                  <span>
+                    {" "}
+                    {comments[i]} {comments[i] === 1 && "answers"}
+                    {comments[i] === 0 && "answers"}
+                    {comments[i] > 1 && "answers"}
+                  </span>
                 </div>
                 <div className={styles["question-content"]}>
                   <Link href={`questions/${questions._id}`}>
@@ -119,9 +130,14 @@ export async function getServerSideProps(context) {
     questions.map(async (q) => await Vote.countDocuments({ qid: q._id }))
   );
 
+  const comments = await Promise.all(
+    questions.map(async (q) => await Comment.countDocuments({ qid: q._id }))
+  );
+
   return {
     props: {
       votes,
+      comments,
       questions: JSON.parse(JSON.stringify(questions)),
       questionsAmount,
       maxPage,
