@@ -116,16 +116,16 @@ const QuestionId = ({ question, votes, comments }) => {
                 {question.solution === comment._id && <img src="/check.svg" />}
                 <p>{comment.content}</p>
 
-                {question.userId === session?.user?._id && (
-                  <button
-                    onClick={() => {
-                      postSolution(comment._id);
-                    }}
-                  >
-                    Mark as answer
-                  </button>
-                )}
                 <div className={styles["comment-meta"]}>
+                  {question.userId === session?.user?._id && (
+                    <button
+                      onClick={() => {
+                        postSolution(comment._id);
+                      }}
+                    >
+                      Mark as answer
+                    </button>
+                  )}
                   <p>answered {renderDates(comment.createdAt)} ago</p>
                   <div className={styles["comment-meta-user"]}>
                     <img alt="userpicture" src={`${comment.userImg}`} />

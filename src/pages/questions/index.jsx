@@ -14,17 +14,6 @@ const questions = ({ questions, questionsAmount, maxPage, votes }) => {
   const router = useRouter();
   let page = parseInt(router.query.page) || 0;
 
-  async function test() {
-    return await fetch("https://api.github.com/users");
-  }
-
-  function test2() {
-    const a = test();
-    return a;
-  }
-
-  console.log(test2());
-
   useEffect(() => {
     renderDates();
   }, []);
@@ -46,7 +35,9 @@ const questions = ({ questions, questionsAmount, maxPage, votes }) => {
               <Button variant={"transparent"}>Newest</Button>
               <Button variant={"transparent"}>Active</Button>
               <Button variant={"transparent"}>Bountied</Button>
-              <Button variant={"transparent"}>Unanswerd</Button>
+              <Link href={`/questions?page=${page}&filter=unanswerd`}>
+                <Button variant={"transparent"}>Unanswerd</Button>
+              </Link>
             </div>
             <Button variant={"btn"}>
               Filter<img src="filter.svg"></img>
@@ -108,9 +99,21 @@ export async function getServerSideProps(context) {
     context.query.page > 0 ? context.query.page : 1
   );
 
-  const questions = await Question.find()
-    .limit(20)
-    .skip(20 * (page - 1));
+  const filterQuestions = async () => {
+    if (context.query.filter === "unanswerd") {
+      return await Question.find({ solution: undefined })
+        .limit(20)
+        .skip(20 * (page - 1));
+    }
+    if (context.query.filter === "active") {
+      return { solution: undefined };
+    }
+    return await Question.find()
+      .limit(20)
+      .skip(20 * (page - 1));
+  };
+
+  const questions = await filterQuestions();
 
   const votes = await Promise.all(
     questions.map(async (q) => await Vote.countDocuments({ qid: q._id }))
