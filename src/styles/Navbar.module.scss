@@ -37,24 +37,6 @@
   }
 }
 
-.menubutton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  height: 100%;
-  width: 6rem;
-  border: none;
-  background-color: white;
-  &:hover {
-    background-color: var(--nhgray);
-  }
-  img {
-    object-fit: fill;
-    height: 23px;
-  }
-}
-
 .brand {
   display: flex;
   height: 100% !important;
@@ -65,6 +47,10 @@
   img {
     object-fit: fill;
     height: 33px;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
   }
   &:hover {
     background-color: lightgray;
@@ -100,6 +86,10 @@
     margin-left: 2rem;
   }
   img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
     width: 3rem;
     border-radius: 3px;
   }

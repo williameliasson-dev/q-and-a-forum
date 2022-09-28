@@ -118,6 +118,10 @@ $nhgray: rgb(207, 207, 207);
     color: gray;
   }
   img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
     margin-left: auto;
     margin-right: 3px;
     width: 2rem;

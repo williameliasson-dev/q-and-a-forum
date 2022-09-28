@@ -53,7 +53,6 @@ const questions = ({
         </header>
         <div>
           {questions.map((questions, i) => {
-            console.log(questions.tags[0]);
             return (
               <div className={styles["question"]} key={i}>
                 <div className={styles["question-stats"]}>
