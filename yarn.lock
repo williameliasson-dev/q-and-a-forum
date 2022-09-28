@@ -2267,9 +2267,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongoose@npm:^6.6.0":
-  version: 6.6.0
-  resolution: "mongoose@npm:6.6.0"
+"mongoose@npm:^6.6.2":
+  version: 6.6.2
+  resolution: "mongoose@npm:6.6.2"
   dependencies:
     bson: ^4.6.5
     kareem: 2.4.1
@@ -2278,7 +2278,7 @@ __metadata:
     mquery: 4.0.3
     ms: 2.1.3
     sift: 16.0.0
-  checksum: 41f5bc38fd8cf394b3964b61d351de263a50cbfc94b968c186f94c584211471dbeaea65b6a9b70c84d764219a730616e4242f75263e272f5a171bed520313e2e
+  checksum: 26062bb8c6243a881bf8fa6761e15ca99a62c0f40c14786b8549349ccdfd111af17217b4c63547b798a98f4057f7ad3fa894bc4a021c56363e7729aaad2d30d1
   languageName: node
   linkType: hard
 
@@ -2822,7 +2822,7 @@ __metadata:
     eslint-config-next: 12.2.5
     fongus: ^0.1.1
     mongodb: ^4.9.1
-    mongoose: ^6.6.0
+    mongoose: ^6.6.2
     next: 12.2.5
     next-auth: ^4.10.3
     postcss: ^8.4.16

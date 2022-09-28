@@ -39,7 +39,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-config-next", "virtual:03e33220cab391d39ca171676fd3aca76c248dd194c688e285323e877b09f6672dca44902b4f0001a7e2606ce100883dbd12b03fa654d97506413ac3a39285ff#npm:12.2.5"],\
             ["fongus", "npm:0.1.1"],\
             ["mongodb", "npm:4.9.1"],\
-            ["mongoose", "npm:6.6.0"],\
+            ["mongoose", "npm:6.6.2"],\
             ["next", "virtual:03e33220cab391d39ca171676fd3aca76c248dd194c688e285323e877b09f6672dca44902b4f0001a7e2606ce100883dbd12b03fa654d97506413ac3a39285ff#npm:12.2.5"],\
             ["next-auth", "virtual:03e33220cab391d39ca171676fd3aca76c248dd194c688e285323e877b09f6672dca44902b4f0001a7e2606ce100883dbd12b03fa654d97506413ac3a39285ff#npm:4.10.3"],\
             ["postcss", "npm:8.4.16"],\
@@ -2806,10 +2806,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["mongoose", [\
-        ["npm:6.6.0", {\
-          "packageLocation": "./.yarn/cache/mongoose-npm-6.6.0-354969b5cc-41f5bc38fd.zip/node_modules/mongoose/",\
+        ["npm:6.6.2", {\
+          "packageLocation": "./.yarn/cache/mongoose-npm-6.6.2-e752a4653b-26062bb8c6.zip/node_modules/mongoose/",\
           "packageDependencies": [\
-            ["mongoose", "npm:6.6.0"],\
+            ["mongoose", "npm:6.6.2"],\
             ["bson", "npm:4.7.0"],\
             ["kareem", "npm:2.4.1"],\
             ["mongodb", "npm:4.9.1"],\
@@ -3456,7 +3456,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-config-next", "virtual:03e33220cab391d39ca171676fd3aca76c248dd194c688e285323e877b09f6672dca44902b4f0001a7e2606ce100883dbd12b03fa654d97506413ac3a39285ff#npm:12.2.5"],\
             ["fongus", "npm:0.1.1"],\
             ["mongodb", "npm:4.9.1"],\
-            ["mongoose", "npm:6.6.0"],\
+            ["mongoose", "npm:6.6.2"],\
             ["next", "virtual:03e33220cab391d39ca171676fd3aca76c248dd194c688e285323e877b09f6672dca44902b4f0001a7e2606ce100883dbd12b03fa654d97506413ac3a39285ff#npm:12.2.5"],\
             ["next-auth", "virtual:03e33220cab391d39ca171676fd3aca76c248dd194c688e285323e877b09f6672dca44902b4f0001a7e2606ce100883dbd12b03fa654d97506413ac3a39285ff#npm:4.10.3"],\
             ["postcss", "npm:8.4.16"],\

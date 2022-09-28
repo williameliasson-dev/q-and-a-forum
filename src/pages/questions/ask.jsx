@@ -3,7 +3,7 @@ import styles from "@/styles/Ask.module.scss";
 import Button from "@/components/Button";
 import { useRouter } from "next/router";
 
-const ask = () => {
+const Ask = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [addTag, setAddTag] = useState("");
@@ -19,8 +19,11 @@ const ask = () => {
   };
 
   useEffect(() => {
-    if (addTag.includes(" ") && tags.length < 5) {
-      setTags([...tags, addTag.split(" ")[0]]);
+    console.log(addTag);
+    setAddTag(addTag.trim());
+    if (addTag.includes(" ") && tags.length < 5 && addTag.trim() !== "") {
+      console.log(tags);
+      setTags([...tags, addTag?.split(" ")[0]]);
       setAddTag("");
     }
   }, [addTag]);
@@ -145,4 +148,4 @@ const ask = () => {
   );
 };
 
-export default ask;
+export default Ask;

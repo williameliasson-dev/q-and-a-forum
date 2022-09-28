@@ -11,7 +11,7 @@ import Comment from "models/comment";
 import renderDates from "utils/renderDates";
 import Pagination from "@/components/Pagination/Pagination";
 
-const questions = ({
+const Questions = ({
   questions,
   questionsAmount,
   maxPage,
@@ -76,7 +76,7 @@ const questions = ({
                   </Link>
 
                   <p>{questions.content.slice(0, 130)}</p>
-                  {questions?.tags[0]?.map((tag, i) => {
+                  {questions?.tags?.map((tag, i) => {
                     return (
                       <span className={styles.tag} key={i}>
                         {tag}
@@ -103,7 +103,7 @@ const questions = ({
   );
 };
 
-export default questions;
+export default Questions;
 
 export async function getServerSideProps(context) {
   await connectDB();

@@ -47,7 +47,7 @@ const Navbar = () => {
         <Link href="/questions?page=0&filter=newest">
           <a>Questions</a>
         </Link>
-        <Link href="/">
+        <Link href="https://github.com/williameliasson-dev/q-and-a-forum">
           <a>Github</a>
         </Link>
         <form>

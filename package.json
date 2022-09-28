@@ -12,7 +12,7 @@
     "@next-auth/mongodb-adapter": "^1.0.4",
     "fongus": "^0.1.1",
     "mongodb": "^4.9.1",
-    "mongoose": "^6.6.0",
+    "mongoose": "^6.6.2",
     "next": "12.2.5",
     "next-auth": "^4.10.3",
     "react": "18.2.0",

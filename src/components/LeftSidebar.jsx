@@ -16,7 +16,7 @@ const LeftSidebar = () => {
             <Link href="/questions">
               <a>Questions</a>
             </Link>
-            <Link href="/">
+            <Link href="/questions/tags">
               <a>Tags</a>
             </Link>
             <Link href="/">
