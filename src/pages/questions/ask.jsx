@@ -6,7 +6,8 @@ import { useRouter } from "next/router";
 const ask = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [tags, setTags] = useState("");
+  const [addTag, setAddTag] = useState("");
+  const [tags, setTags] = useState([]);
   const [error, setError] = useState({ title: null, body: null, tags: null });
 
   const router = useRouter();
@@ -16,6 +17,13 @@ const ask = () => {
     content,
     tags,
   };
+
+  useEffect(() => {
+    if (addTag.includes(" ") && tags.length < 5) {
+      setTags([...tags, addTag.split(" ")[0]]);
+      setAddTag("");
+    }
+  }, [addTag]);
 
   function validateQuestion() {
     let newError = { title: null, body: null, tags: null };
@@ -97,11 +105,17 @@ const ask = () => {
           <div className={styles["ask-tags"]}>
             <h2>Tags</h2>
             <p>Add up to 5 tags to describe what your question is about</p>
-            <input
-              value={tags}
-              onChange={(e) => setTags(e.target.value)}
-              placeholder="e.g. (angularjs javascript string)"
-            />
+            <div>
+              {tags?.map((tag, i) => {
+                return <span key={i}>{tag}</span>;
+              })}
+              <input
+                value={addTag}
+                onChange={(e) => setAddTag(e.target.value)}
+                placeholder="e.g. (angularjs javascript string)"
+              />
+            </div>
+            <Button variant={"blue"}>Add tag</Button>
           </div>
         </div>
         <Button onClick={() => validateQuestion()} variant={"blue"}>
