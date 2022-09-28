@@ -107,7 +107,19 @@ const ask = () => {
             <p>Add up to 5 tags to describe what your question is about</p>
             <div>
               {tags?.map((tag, i) => {
-                return <span key={i}>{tag}</span>;
+                return (
+                  <span key={i}>
+                    {tag}
+                    <button
+                      onClick={() => {
+                        tags.splice(i, 1);
+                        setTags([...tags]);
+                      }}
+                    >
+                      <img alt="close" src="/x.svg" />
+                    </button>
+                  </span>
+                );
               })}
               <input
                 value={addTag}
@@ -115,7 +127,6 @@ const ask = () => {
                 placeholder="e.g. (angularjs javascript string)"
               />
             </div>
-            <Button variant={"blue"}>Add tag</Button>
           </div>
         </div>
         <Button onClick={() => validateQuestion()} variant={"blue"}>

@@ -17,6 +17,7 @@ export default async function handler(req, res) {
     const newQuestion = {
       title: req.body.title,
       content: req.body.content,
+      tags: [req.body.tags],
       userName: session.user.name,
       userId: session.user._id,
       userImg: session.user.image,
