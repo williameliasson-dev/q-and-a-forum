@@ -59,7 +59,7 @@
 
 .ask-tags {
   @extend .ask-title;
-  div {
+  div:last-child {
     display: flex;
     align-items: center;
     margin: 10px 0 40px 0;
@@ -83,7 +83,7 @@
   span {
     display: flex;
     align-items: center;
-    background-color: hsl(204, 75%, 83%);
+    background-color: hsl(203, 65%, 81%);
     padding: 5px;
     margin: 2px;
     border-radius: 5px;

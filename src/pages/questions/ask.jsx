@@ -36,6 +36,9 @@ const ask = () => {
       newError.body =
         "Body cannot be longer than 1000 or shorter than 100 characters";
     }
+    if (tags.length < 1) {
+      newError.tags = "You need atleast one tag";
+    }
 
     if (!newError.body && !newError.tags && !newError.title) {
       postQuestion();
@@ -105,7 +108,12 @@ const ask = () => {
           <div className={styles["ask-tags"]}>
             <h2>Tags</h2>
             <p>Add up to 5 tags to describe what your question is about</p>
-            <div>
+            {error.tags && (
+              <div className={styles.error}>
+                <p>{error.tags}</p>
+              </div>
+            )}
+            <div className={error.tags ? styles.inputerror : ""}>
               {tags?.map((tag, i) => {
                 return (
                   <span key={i}>

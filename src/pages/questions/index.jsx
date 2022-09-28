@@ -53,6 +53,7 @@ const questions = ({
         </header>
         <div>
           {questions.map((questions, i) => {
+            console.log(questions.tags[0]);
             return (
               <div className={styles["question"]} key={i}>
                 <div className={styles["question-stats"]}>
@@ -76,6 +77,13 @@ const questions = ({
                   </Link>
 
                   <p>{questions.content.slice(0, 130)}</p>
+                  {questions?.tags[0]?.map((tag, i) => {
+                    return (
+                      <span className={styles.tag} key={i}>
+                        {tag}
+                      </span>
+                    );
+                  })}
                   <div>
                     <span className={styles["question-meta"]}>
                       <img src={`${questions.userImg}`} />
