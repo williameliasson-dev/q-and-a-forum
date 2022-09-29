@@ -136,7 +136,11 @@ export async function getServerSideProps(context) {
   );
 
   function renderTagQuery() {
-    if (context.query.tag && context.query.tag != "undefined") {
+    if (
+      context.query.tag &&
+      context.query.tag != "undefined" &&
+      context.query.filter !== "unanswered"
+    ) {
       return { tags: context.query.tag };
     }
     if (
@@ -152,7 +156,7 @@ export async function getServerSideProps(context) {
 
   const filterQuestions = async () => {
     if (context.query.filter === "unanswered") {
-      console.log("AAAA");
+      console.log(renderTagQuery());
       questionsAmount = await Question.countDocuments(renderTagQuery());
       maxPage = Math.ceil((await questionsAmount) / docsPerPage);
       return await Question.find(renderTagQuery())
