@@ -31,10 +31,10 @@ const Questions = ({
     if (tag && !filter) {
       return `[Tag] ${tag}`;
     }
-    if (filter && tag) {
+    if (filter && tag && tag !== "undefined") {
       return `${filter}, [Tag] ${tag}`;
     }
-    if (filter && !tag) {
+    if ((filter && !tag) || tag === "undefined") {
       return `${filter}`;
     }
     return "All Questions";
