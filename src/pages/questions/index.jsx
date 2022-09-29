@@ -152,9 +152,10 @@ export async function getServerSideProps(context) {
 
   const filterQuestions = async () => {
     if (context.query.filter === "unanswered") {
+      console.log("AAAA");
       questionsAmount = await Question.countDocuments(renderTagQuery());
       maxPage = Math.ceil((await questionsAmount) / docsPerPage);
-      return await Question.find({ solution: undefined })
+      return await Question.find(renderTagQuery())
         .limit(20)
         .skip(20 * (page - 1));
     }
