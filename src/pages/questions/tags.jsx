@@ -13,7 +13,6 @@ const tags = ({ tags, amountQuestions, answeredQuestions }) => {
         {tags?.map((tag, i) => {
           const qSuffix = () => (amountQuestions[i] > 1 ? "s" : "");
           const qaSuffix = () => (answeredQuestions[i] > 1 ? "s" : "");
-          console.log(qSuffix());
 
           return (
             <div className={styles.tag} key={i}>

@@ -19,9 +19,6 @@ const LeftSidebar = () => {
             <Link href="/questions/tags">
               <a>Tags</a>
             </Link>
-            <Link href="/">
-              <a>Users</a>
-            </Link>
           </div>
         </div>
       </div>

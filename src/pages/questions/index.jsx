@@ -20,10 +20,24 @@ const Questions = ({
 }) => {
   const router = useRouter();
   let page = parseInt(router.query.page) || 1;
+  let tag = router.query.tag || undefined;
+  let filter = router.query.filter || undefined;
 
   useEffect(() => {
     renderDates();
   }, []);
+
+  console.log(filter);
+
+  function renderHeader() {
+    if (tag && !filter) {
+      return `[Tag] ${tag}`;
+    }
+    if (filter) {
+      return `${filter}`;
+    }
+    return "All Questions";
+  }
 
   return (
     <div className={styles.container}>
@@ -31,7 +45,7 @@ const Questions = ({
       <div className={styles.questions}>
         <header className={styles.head}>
           <div className={styles["head-top"]}>
-            <h1>All Questions</h1>
+            <h1>{renderHeader()}</h1>
             <a href="questions/ask">
               <Button variant={"blue"}>Ask a question</Button>
             </a>
