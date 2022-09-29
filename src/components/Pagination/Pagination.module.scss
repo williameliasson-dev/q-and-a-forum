@@ -1,11 +1,13 @@
 .pagination {
+  display: flex;
   .current {
-    background-color: hsl(27, 90%, 55%);
+    background-color: hsl(27, 90%, 55%) !important;
     border: hsl(27, 90%, 55%);
     color: white;
   }
   margin-top: 1rem;
-  a {
+
+  div {
     margin: 0 5px 0 5px;
     text-decoration: none;
     color: black;

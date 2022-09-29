@@ -21,13 +21,11 @@ const Questions = ({
   const router = useRouter();
   let page = parseInt(router.query.page) || 1;
   let tag = router.query.tag || undefined;
-  let filter = router.query.filter || undefined;
+  let filter = router.query.filter || "newest";
 
   useEffect(() => {
     renderDates();
   }, []);
-
-  console.log(filter);
 
   function renderHeader() {
     if (tag && !filter) {
@@ -110,7 +108,7 @@ const Questions = ({
           })}
         </div>
         <div className={styles.pagination}>
-          <Pagination maxPage={maxPage} page={page} />
+          <Pagination maxPage={maxPage} page={page} tag={tag} filter={filter} />
         </div>
       </div>
     </div>
@@ -131,6 +129,13 @@ export async function getServerSideProps(context) {
     context.query.page > 0 ? context.query.page : 1
   );
 
+  function renderTagQuery() {
+    if (context.query.tag && context.query.tag != "undefined") {
+      return { tags: context.query.tag };
+    }
+    return;
+  }
+
   const filterQuestions = async () => {
     if (context.query.filter === "unanswered") {
       return await Question.find({ solution: undefined })
@@ -138,13 +143,13 @@ export async function getServerSideProps(context) {
         .skip(20 * (page - 1));
     }
     if (context.query.filter === "newest") {
-      return await Question.find({})
+      return await Question.find(renderTagQuery())
         .sort("-createdAt")
         .limit(20)
         .skip(20 * (page - 1));
     }
     if (context.query.tag) {
-      return await Question.find({ tags: context.query.tag })
+      return await Question.find(renderTagQuery())
         .sort("-createdAt")
         .limit(20)
         .skip(20 * (page - 1));

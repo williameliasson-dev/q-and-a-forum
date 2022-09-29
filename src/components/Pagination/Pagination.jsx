@@ -2,21 +2,25 @@ import React from "react";
 import styles from "./Pagination.module.scss";
 import Link from "next/link";
 
-const Pagination = ({ maxPage, page }) => {
+const Pagination = ({ maxPage, page, tag, filter }) => {
   function renderPagination() {
+    let pages = [];
     if (maxPage < 5) {
       for (let i = 0; i < maxPage; i++) {
+        pages.push(i + 1);
+      }
+      return pages?.map((i) => {
         return (
           <>
             <Link
-              href={`/questions?page=${i}`}
-              className={page === 1 || page === 0 ? styles.current : ""}
+              key={i}
+              href={`/questions?page=${i}&filter=${filter}&tag=${tag}`}
             >
-              1
+              <div className={page === i ? styles.current : ""}> {i}</div>
             </Link>
           </>
         );
-      }
+      });
     }
 
     if (maxPage > 5 && page < 5) {
@@ -92,25 +96,25 @@ const Pagination = ({ maxPage, page }) => {
             href={`/questions?page=${maxPage - 3}`}
             className={page === maxPage - 3 ? styles.current : ""}
           >
-            {maxPage - 3}
+            <div> {maxPage - 3}</div>
           </Link>
           <Link
             href={`/questions?page=${maxPage - 2}`}
             className={page === maxPage - 2 ? styles.current : ""}
           >
-            {maxPage - 2}
+            <div> {maxPage - 2}</div>
           </Link>
           <Link
             href={`/questions?page=${maxPage - 1}`}
             className={page === maxPage - 1 ? styles.current : ""}
           >
-            {maxPage - 1}
+            <div> {maxPage - 1}</div>
           </Link>
           <Link
             href={`/questions?page=${maxPage}`}
             className={page === maxPage ? styles.current : ""}
           >
-            {maxPage}
+            <div>{maxPage}</div>
           </Link>
         </>
       );
@@ -118,10 +122,16 @@ const Pagination = ({ maxPage, page }) => {
   }
   return (
     <div className={styles.pagination}>
-      {page > 1 && <Link href={`/questions?page=${page - 1}`}>Prev</Link>}
+      {page > 1 && (
+        <Link href={`/questions?page=${page - 1}`}>
+          <div>Prev</div>
+        </Link>
+      )}
       {renderPagination()}
       {page !== maxPage && (
-        <Link href={`/questions?page=${page + 1}`}>Next</Link>
+        <Link href={`/questions?page=${page + 1}`}>
+          <div>Next</div>
+        </Link>
       )}
     </div>
   );
