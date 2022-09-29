@@ -90,7 +90,10 @@ const Questions = ({
                   <p>{questions.content.slice(0, 130)}</p>
                   {questions?.tags?.map((tag, i) => {
                     return (
-                      <Link key={i} href={`/questions?tag=${tag}`}>
+                      <Link
+                        key={i}
+                        href={`/questions?tag=${tag}&filter=${filter}`}
+                      >
                         <span className={styles.tag}>{tag}</span>
                       </Link>
                     );
@@ -133,14 +136,20 @@ export async function getServerSideProps(context) {
     if (context.query.tag && context.query.tag != "undefined") {
       return { tags: context.query.tag };
     }
+    if (
+      context.query.tag != "undefined" &&
+      context.query.filter === "unanswered"
+    ) {
+      if (context.query.tag) {
+        return { tags: context.query.tag, solution: undefined };
+      } else return { solution: undefined };
+    }
     return;
   }
 
   const filterQuestions = async () => {
     if (context.query.filter === "unanswered") {
-      questionsAmount = await Question.countDocuments(renderTagQuery(), {
-        solution: undefined,
-      });
+      questionsAmount = await Question.countDocuments(renderTagQuery());
       maxPage = Math.ceil((await questionsAmount) / docsPerPage);
       return await Question.find({ solution: undefined })
         .limit(20)
