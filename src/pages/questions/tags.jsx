@@ -12,10 +12,11 @@ const tags = ({ tags, amountQuestions, answeredQuestions }) => {
       <div className={styles.tags}>
         {tags?.map((tag, i) => (
           <div className={styles.tag} key={i}>
-            <Link href={`/questions?tag=${tag}`}>
-              <h3>{tag}</h3>
-            </Link>
             <div>
+              <Link href={`/questions?tag=${tag}`}>
+                <h3>{tag}</h3>
+              </Link>
+
               <p>{amountQuestions[i]} questions</p>
               <p>{answeredQuestions[i]} questions answered</p>
             </div>

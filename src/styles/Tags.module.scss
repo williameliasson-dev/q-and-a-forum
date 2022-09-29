@@ -14,7 +14,11 @@
   margin-bottom: auto;
   gap: 3rem;
   .tag {
+    div {
+      margin-left: 1rem;
+    }
     h3 {
+      text-align: center;
       cursor: pointer;
       font-weight: 400;
       background-color: hsl(203, 89%, 93%);
