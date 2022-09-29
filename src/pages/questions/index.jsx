@@ -19,7 +19,7 @@ const Questions = ({
   comments,
 }) => {
   const router = useRouter();
-  let page = parseInt(router.query.page) || 0;
+  let page = parseInt(router.query.page) || 1;
 
   useEffect(() => {
     renderDates();
@@ -78,10 +78,8 @@ const Questions = ({
                   <p>{questions.content.slice(0, 130)}</p>
                   {questions?.tags?.map((tag, i) => {
                     return (
-                      <Link href={`/questions?tag=${tag}`}>
-                        <span className={styles.tag} key={i}>
-                          {tag}
-                        </span>
+                      <Link key={i} href={`/questions?tag=${tag}`}>
+                        <span className={styles.tag}>{tag}</span>
                       </Link>
                     );
                   })}

@@ -10,18 +10,27 @@ const tags = ({ tags, amountQuestions, answeredQuestions }) => {
     <div className={styles.wrapper}>
       <LeftSidebar />
       <div className={styles.tags}>
-        {tags?.map((tag, i) => (
-          <div className={styles.tag} key={i}>
-            <div>
-              <Link href={`/questions?tag=${tag}`}>
-                <h3>{tag}</h3>
-              </Link>
+        {tags?.map((tag, i) => {
+          const qSuffix = () => (amountQuestions[i] > 1 ? "s" : "");
+          const qaSuffix = () => (answeredQuestions[i] > 1 ? "s" : "");
+          console.log(qSuffix());
 
-              <p>{amountQuestions[i]} questions</p>
-              <p>{answeredQuestions[i]} questions answered</p>
+          return (
+            <div className={styles.tag} key={i}>
+              <div>
+                <Link href={`/questions?tag=${tag}`}>
+                  <h3>{tag}</h3>
+                </Link>
+                <p>
+                  {amountQuestions[i]} question{qSuffix()}
+                </p>
+                <p>
+                  {answeredQuestions[i]} question{qaSuffix()} answered
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

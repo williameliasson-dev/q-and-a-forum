@@ -4,6 +4,21 @@ import Link from "next/link";
 
 const Pagination = ({ maxPage, page }) => {
   function renderPagination() {
+    if (maxPage < 5) {
+      for (let i = 0; i < maxPage; i++) {
+        return (
+          <>
+            <Link
+              href={`/questions?page=${i}`}
+              className={page === 1 || page === 0 ? styles.current : ""}
+            >
+              1
+            </Link>
+          </>
+        );
+      }
+    }
+
     if (maxPage > 5 && page < 5) {
       return (
         <>
@@ -64,7 +79,11 @@ const Pagination = ({ maxPage, page }) => {
         </>
       );
     }
-    if (page === maxPage - 2 || page === maxPage - 1 || page === maxPage) {
+    if (
+      (page === maxPage - 2 && maxPage > 5) ||
+      (page === maxPage - 1 && maxPage > 5) ||
+      (page === maxPage && maxPage > 5)
+    ) {
       return (
         <>
           <Link href={`/questions?page=1`}>1</Link>
@@ -101,7 +120,9 @@ const Pagination = ({ maxPage, page }) => {
     <div className={styles.pagination}>
       {page > 1 && <Link href={`/questions?page=${page - 1}`}>Prev</Link>}
       {renderPagination()}
-      {page < maxPage && <Link href={`/questions?page=${page + 1}`}>Next</Link>}
+      {page !== maxPage && (
+        <Link href={`/questions?page=${page + 1}`}>Next</Link>
+      )}
     </div>
   );
 };
