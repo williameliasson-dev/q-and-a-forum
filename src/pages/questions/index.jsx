@@ -31,8 +31,8 @@ const Questions = ({
     if (tag && !filter) {
       return `[Tag] ${tag}`;
     }
-    if (filter) {
-      return `${filter}`;
+    if (filter && tag) {
+      return `${filter}, [Tag] ${tag}`;
     }
     return "All Questions";
   }
@@ -119,10 +119,10 @@ export default Questions;
 
 export async function getServerSideProps(context) {
   await connectDB();
-  const questionsAmount = await Question.count();
+  let questionsAmount = await Question.count();
 
   const docsPerPage = 20;
-  const maxPage = Math.ceil(questionsAmount / docsPerPage);
+  let maxPage = Math.ceil(questionsAmount / docsPerPage);
 
   const page = Math.min(
     maxPage,
@@ -138,17 +138,25 @@ export async function getServerSideProps(context) {
 
   const filterQuestions = async () => {
     if (context.query.filter === "unanswered") {
+      questionsAmount = await Question.countDocuments(renderTagQuery(), {
+        solution: undefined,
+      });
+      maxPage = Math.ceil((await questionsAmount) / docsPerPage);
       return await Question.find({ solution: undefined })
         .limit(20)
         .skip(20 * (page - 1));
     }
     if (context.query.filter === "newest") {
+      questionsAmount = await Question.countDocuments(renderTagQuery());
+      maxPage = Math.ceil((await questionsAmount) / docsPerPage);
       return await Question.find(renderTagQuery())
         .sort("-createdAt")
         .limit(20)
         .skip(20 * (page - 1));
     }
     if (context.query.tag) {
+      questionsAmount = await Question.countDocuments(renderTagQuery());
+      maxPage = Math.ceil((await questionsAmount) / docsPerPage);
       return await Question.find(renderTagQuery())
         .sort("-createdAt")
         .limit(20)
