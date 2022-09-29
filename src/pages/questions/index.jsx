@@ -34,6 +34,9 @@ const Questions = ({
     if (filter && tag) {
       return `${filter}, [Tag] ${tag}`;
     }
+    if (filter && !tag) {
+      return `${filter}`;
+    }
     return "All Questions";
   }
 
