@@ -1,0 +1,34 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  width: min(1265px, 100vw);
+  margin: 0 auto;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 5rem;
+  margin-bottom: auto;
+  gap: 3rem;
+  .tag {
+    h3 {
+      cursor: pointer;
+      font-weight: 400;
+      background-color: hsl(203, 89%, 93%);
+      padding: 5px;
+      border-radius: 5px;
+    }
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: white;
+    border: 1px solid var(--nhgray);
+    min-width: 200px;
+
+    border-radius: 5px;
+  }
+}

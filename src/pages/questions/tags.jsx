@@ -1,19 +1,27 @@
 import React from "react";
 import Question from "models/question";
 import connectDB from "utils/connectDB";
+import LeftSidebar from "@/components/LeftSidebar";
 import styles from "@/styles/Tags.module.scss";
+import Link from "next/link";
 
-const tags = ({ tags, amountQuestions }) => {
+const tags = ({ tags, amountQuestions, answeredQuestions }) => {
   return (
-    <div className="">
-      {tags?.map((tag, i) => (
-        <div key={i}>
-          <h2>
-            {tag}
-            {amountQuestions[i]}
-          </h2>
-        </div>
-      ))}
+    <div className={styles.wrapper}>
+      <LeftSidebar />
+      <div className={styles.tags}>
+        {tags?.map((tag, i) => (
+          <div className={styles.tag} key={i}>
+            <Link href={`/questions?tag=${tag}`}>
+              <h3>{tag}</h3>
+            </Link>
+            <div>
+              <p>{amountQuestions[i]} questions</p>
+              <p>{answeredQuestions[i]} questions answered</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
@@ -28,11 +36,21 @@ export async function getStaticProps(context) {
   const amountQuestions = Promise.all(
     tags?.map(async (tag) => await Question.countDocuments({ tags: tag }))
   );
+  const answeredQuestions = Promise.all(
+    tags?.map(
+      async (tag) =>
+        await Question.countDocuments({
+          tags: tag,
+          solution: { $exists: true },
+        })
+    )
+  );
 
   return {
     props: {
       tags,
       amountQuestions: JSON.parse(JSON.stringify(await amountQuestions)),
+      answeredQuestions: JSON.parse(JSON.stringify(await answeredQuestions)),
     },
   };
 }

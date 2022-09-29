@@ -78,9 +78,11 @@ const Questions = ({
                   <p>{questions.content.slice(0, 130)}</p>
                   {questions?.tags?.map((tag, i) => {
                     return (
-                      <span className={styles.tag} key={i}>
-                        {tag}
-                      </span>
+                      <Link href={`/questions?tag=${tag}`}>
+                        <span className={styles.tag} key={i}>
+                          {tag}
+                        </span>
+                      </Link>
                     );
                   })}
                   <div>
@@ -124,7 +126,16 @@ export async function getServerSideProps(context) {
         .skip(20 * (page - 1));
     }
     if (context.query.filter === "newest") {
-      return await Question.find({}).sort("-createdAt");
+      return await Question.find({})
+        .sort("-createdAt")
+        .limit(20)
+        .skip(20 * (page - 1));
+    }
+    if (context.query.tag) {
+      return await Question.find({ tags: context.query.tag })
+        .sort("-createdAt")
+        .limit(20)
+        .skip(20 * (page - 1));
     }
     return await Question.find()
       .limit(20)

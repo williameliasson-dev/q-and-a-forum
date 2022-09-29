@@ -132,6 +132,8 @@ $nhgray: rgb(207, 207, 207);
 }
 
 .tag {
+  cursor: pointer;
+  text-decoration: none;
   background-color: hsl(203, 89%, 93%);
   padding: 5px;
   margin: 2px;
