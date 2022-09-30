@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 const LeftSidebar = () => {
   const router = useRouter();
   let page = router.pathname;
-  console.log(page);
 
   return (
     <div className={styles.container}>

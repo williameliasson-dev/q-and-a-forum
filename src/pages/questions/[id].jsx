@@ -175,8 +175,6 @@ export async function getStaticProps(context) {
 
   const question = await Question.findById(questionId);
 
-  console.log(await Question.find({ $text: { $search: "test" } }).limit(5));
-
   return {
     props: {
       question: JSON.parse(JSON.stringify(question)),

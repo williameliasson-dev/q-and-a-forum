@@ -19,10 +19,8 @@ const Ask = () => {
   };
 
   useEffect(() => {
-    console.log(addTag);
     setAddTag(addTag.trim());
     if (addTag.includes(" ") && tags.length < 5 && addTag.trim() !== "") {
-      console.log(tags);
       setTags([...tags, addTag?.split(" ")[0]]);
       setAddTag("");
     }
@@ -33,7 +31,6 @@ const Ask = () => {
     if (title.length > 100 || title.length < 15) {
       newError.title =
         "Title cannot be longer than 100 or shorter than 15 characters";
-      console.log(error.title);
     }
     if (content.length < 100 || content.length > 1000) {
       newError.body =
@@ -65,7 +62,7 @@ const Ask = () => {
       requestOptions
     );
     const data = await response.json();
-    console.log(data);
+
     router.push(`/questions/${data.savedDoc._id}`);
   }
 

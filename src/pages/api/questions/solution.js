@@ -15,8 +15,6 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     await connectDB();
 
-    console.log(req.body.qid);
-
     await Question.findOneAndUpdate(
       { _id: req.body.qid },
       { solution: req.body.cid }
