@@ -2,10 +2,15 @@ import React from "react";
 import Question from "models/question";
 import connectDB from "utils/connectDB";
 import LeftSidebar from "@/components/LeftSidebar";
+import Pagination from "@/components/Pagination/Pagination";
 import styles from "@/styles/Tags.module.scss";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const tags = ({ tags, amountQuestions, answeredQuestions }) => {
+  const router = useRouter();
+  let page = parseInt(router.query.page) || 1;
+
   return (
     <div className={styles.wrapper}>
       <LeftSidebar />
@@ -31,6 +36,7 @@ const tags = ({ tags, amountQuestions, answeredQuestions }) => {
           );
         })}
       </div>
+      <Pagination />
     </div>
   );
 };
@@ -39,6 +45,15 @@ export default tags;
 
 export async function getStaticProps(context) {
   await connectDB();
+
+  let questionsAmount = await Question.count();
+
+  const docsPerPage = 20;
+  let maxPage = Math.ceil(questionsAmount / docsPerPage);
+  const page = Math.min(
+    maxPage,
+    context.query?.page > 0 ? context.query.page : 1
+  );
 
   const tags = await Question.distinct("tags");
 

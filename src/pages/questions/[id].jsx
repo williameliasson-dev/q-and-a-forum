@@ -9,10 +9,12 @@ import connectDB from "utils/connectDB";
 import Button from "@/components/Button";
 import renderDates from "utils/renderDates";
 import { useSession } from "next-auth/react";
+import useSWR from "swr";
 
-const QuestionId = ({ question, votes, comments }) => {
+const QuestionId = ({ question, votes }) => {
   const [comment, setComment] = useState("");
   const { data: session } = useSession();
+  const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
   const router = useRouter();
 
@@ -20,6 +22,15 @@ const QuestionId = ({ question, votes, comments }) => {
     qid: router.query.id,
     content: comment,
   };
+
+  let { data: comments, error } = useSWR(
+    `/api/comments/get?qid=${router?.query?.id}`,
+    fetcher,
+    { refreshInterval: 1000 }
+  );
+  if (!comments) {
+    comments = [];
+  }
 
   const voteCount = votes.reduce(
     (prev, current) => prev + (current.type === "up" ? 1 : -1),
@@ -54,7 +65,7 @@ const QuestionId = ({ question, votes, comments }) => {
       body: JSON.stringify(newComment),
       redirect: "follow",
     };
-
+    setComment("");
     await fetch("http://localhost:3000/api/comments/create", requestOptions);
   }
 
@@ -167,6 +178,7 @@ export async function getStaticProps(context) {
       comments: JSON.parse(JSON.stringify(comments)),
       votes: JSON.parse(JSON.stringify(votes)),
     },
+    revalidate: 100,
   };
 }
 

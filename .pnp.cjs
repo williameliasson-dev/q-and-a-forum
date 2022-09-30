@@ -45,7 +45,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["postcss", "npm:8.4.16"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:03e33220cab391d39ca171676fd3aca76c248dd194c688e285323e877b09f6672dca44902b4f0001a7e2606ce100883dbd12b03fa654d97506413ac3a39285ff#npm:18.2.0"],\
-            ["sass", "npm:1.54.9"]\
+            ["sass", "npm:1.54.9"],\
+            ["swr", "virtual:03e33220cab391d39ca171676fd3aca76c248dd194c688e285323e877b09f6672dca44902b4f0001a7e2606ce100883dbd12b03fa654d97506413ac3a39285ff#npm:1.3.0"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -3462,7 +3463,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["postcss", "npm:8.4.16"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:03e33220cab391d39ca171676fd3aca76c248dd194c688e285323e877b09f6672dca44902b4f0001a7e2606ce100883dbd12b03fa654d97506413ac3a39285ff#npm:18.2.0"],\
-            ["sass", "npm:1.54.9"]\
+            ["sass", "npm:1.54.9"],\
+            ["swr", "virtual:03e33220cab391d39ca171676fd3aca76c248dd194c688e285323e877b09f6672dca44902b4f0001a7e2606ce100883dbd12b03fa654d97506413ac3a39285ff#npm:1.3.0"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -3971,6 +3973,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/supports-preserve-symlinks-flag-npm-1.0.0-f17c4d0028-53b1e247e6.zip/node_modules/supports-preserve-symlinks-flag/",\
           "packageDependencies": [\
             ["supports-preserve-symlinks-flag", "npm:1.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["swr", [\
+        ["npm:1.3.0", {\
+          "packageLocation": "./.yarn/cache/swr-npm-1.3.0-3a8f9fadf5-e7a184f0d5.zip/node_modules/swr/",\
+          "packageDependencies": [\
+            ["swr", "npm:1.3.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:03e33220cab391d39ca171676fd3aca76c248dd194c688e285323e877b09f6672dca44902b4f0001a7e2606ce100883dbd12b03fa654d97506413ac3a39285ff#npm:1.3.0", {\
+          "packageLocation": "./.yarn/__virtual__/swr-virtual-1c76c848b1/0/cache/swr-npm-1.3.0-3a8f9fadf5-e7a184f0d5.zip/node_modules/swr/",\
+          "packageDependencies": [\
+            ["swr", "virtual:03e33220cab391d39ca171676fd3aca76c248dd194c688e285323e877b09f6672dca44902b4f0001a7e2606ce100883dbd12b03fa654d97506413ac3a39285ff#npm:1.3.0"],\
+            ["@types/react", null],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\

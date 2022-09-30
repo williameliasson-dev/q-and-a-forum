@@ -132,7 +132,7 @@ export async function getServerSideProps(context) {
 
   const page = Math.min(
     maxPage,
-    context.query.page > 0 ? context.query.page : 1
+    context.query?.page > 0 ? context.query.page : 1
   );
 
   function renderTagQuery() {
