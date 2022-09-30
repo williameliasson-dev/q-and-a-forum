@@ -4,13 +4,24 @@
   height: 35px;
   width: 30vw;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   border: 1px solid var(--nhgray);
   border-radius: 4px;
   &:focus-within {
     outline: 4px solid var(--nhgray);
     border: 1px solid rgb(0, 157, 255);
+  }
+  .search {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+  }
+  .results {
+    margin-top: 8rem;
+    font-size: 1.4rem;
+    background-color: white;
   }
   input {
     border: none;
