@@ -3,6 +3,7 @@ import Link from "next/link";
 import styles from "@/styles/Navbar.module.scss";
 import Button from "./Button";
 import { useSession, signIn, signOut } from "next-auth/react";
+import SearchBar from "./SearchBar/SearchBar";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -50,12 +51,7 @@ const Navbar = () => {
         <Link href="https://github.com/williameliasson-dev/q-and-a-forum">
           <a>Github</a>
         </Link>
-        <form>
-          <div className={styles.searchbar}>
-            <img src="/search.svg" className="h-6"></img>
-            <input placeholder="Search..." type={"text"} />
-          </div>
-        </form>
+        <SearchBar />
         {renderUserSection()}
       </nav>
     </header>

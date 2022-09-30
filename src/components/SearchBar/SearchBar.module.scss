@@ -1,0 +1,21 @@
+.searchbar {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  height: 35px;
+  width: 30vw;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid var(--nhgray);
+  border-radius: 4px;
+  &:focus-within {
+    outline: 4px solid var(--nhgray);
+    border: 1px solid rgb(0, 157, 255);
+  }
+  input {
+    border: none;
+    &:focus {
+      outline: none;
+    }
+  }
+}

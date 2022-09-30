@@ -2,7 +2,7 @@ import { Schema, model, models } from "mongoose";
 
 const questionSchema = new Schema(
   {
-    title: { type: "String", required: true },
+    title: { type: "String", required: true, index: true, text: true },
     content: { type: "String", required: true },
     solution: { type: "String", required: false },
     tags: { type: [String], required: false },

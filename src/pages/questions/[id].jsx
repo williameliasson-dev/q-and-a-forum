@@ -3,8 +3,6 @@ import { useRouter } from "next/router";
 import LeftSidebar from "@/components/LeftSidebar";
 import styles from "@/styles/Question.module.scss";
 import Question from "models/question";
-import Vote from "models/vote";
-import Comment from "models/comment";
 import connectDB from "utils/connectDB";
 import Button from "@/components/Button";
 import renderDates from "utils/renderDates";
@@ -176,6 +174,8 @@ export async function getStaticProps(context) {
   await connectDB();
 
   const question = await Question.findById(questionId);
+
+  console.log(await Question.find({ $text: { $search: "test" } }).limit(5));
 
   return {
     props: {
