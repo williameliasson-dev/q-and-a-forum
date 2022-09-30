@@ -11,7 +11,7 @@ import renderDates from "utils/renderDates";
 import { useSession } from "next-auth/react";
 import useSWR from "swr";
 
-const QuestionId = ({ question, votes }) => {
+const QuestionId = ({ question }) => {
   const [comment, setComment] = useState("");
   const { data: session } = useSession();
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -28,11 +28,19 @@ const QuestionId = ({ question, votes }) => {
     fetcher,
     { refreshInterval: 1000 }
   );
+  let { data: votes, error: voteserr } = useSWR(
+    `/api/votes/get?qid=${router?.query?.id}`,
+    fetcher,
+    { refreshInterval: 800 }
+  );
   if (!comments) {
     comments = [];
   }
+  if (!votes) {
+    votes = [];
+  }
 
-  const voteCount = votes.reduce(
+  let voteCount = votes.reduce(
     (prev, current) => prev + (current.type === "up" ? 1 : -1),
     0
   );
@@ -74,7 +82,6 @@ const QuestionId = ({ question, votes }) => {
       qid: question._id,
       type,
     };
-
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const requestOptions = {
