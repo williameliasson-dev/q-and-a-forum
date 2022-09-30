@@ -176,14 +176,10 @@ export async function getStaticProps(context) {
   await connectDB();
 
   const question = await Question.findById(questionId);
-  const votes = await Vote.find({ qid: questionId });
-  const comments = await Comment.find({ qid: questionId });
 
   return {
     props: {
       question: JSON.parse(JSON.stringify(question)),
-      comments: JSON.parse(JSON.stringify(comments)),
-      votes: JSON.parse(JSON.stringify(votes)),
     },
     revalidate: 100,
   };
