@@ -8,6 +8,10 @@
   margin-top: 1rem;
 
   div {
+    cursor: pointer;
+    min-width: 3rem;
+    display: flex;
+    justify-content: center;
     margin: 0 5px 0 5px;
     text-decoration: none;
     color: black;

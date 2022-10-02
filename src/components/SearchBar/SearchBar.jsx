@@ -16,7 +16,7 @@ const SearchBar = () => {
     fetcher,
     { refreshInterval: 100 }
   );
-  console.log(results);
+
   useEffect(() => {
     if (fetchedResults) {
       setResults(fetchedResults);
