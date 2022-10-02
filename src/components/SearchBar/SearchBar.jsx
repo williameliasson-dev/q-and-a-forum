@@ -3,49 +3,65 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./SearchBar.module.scss";
 import useSWR from "swr";
+import { useRouter } from "next/router";
+import Button from "../Button";
 
 const SearchBar = () => {
+  const router = useRouter();
   const [search, setSearch] = useState("");
-  const [shouldFetch, setShouldFetch] = useState(true);
   const [results, setResults] = useState([]);
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
   let { data: fetchedResults, error } = useSWR(
-    () => (shouldFetch ? `/api/search/get?title=${search}` : null),
+    () => `/api/search/get?title=${search}`,
     fetcher,
     { refreshInterval: 100 }
   );
-
+  console.log(results);
   useEffect(() => {
-    if (fetchedResults && shouldFetch) {
+    if (fetchedResults) {
       setResults(fetchedResults);
     }
   }, [search, fetchedResults]);
 
   return (
-    <div>
-      <form>
-        <div className={styles.searchbar}>
-          <div className={styles.search}>
-            <img src="/search.svg" className="h-6"></img>
-            <input
-              onChange={(e) => setSearch(e.target.value)}
-              value={search}
-              placeholder="Search..."
-              type="text"
-            />
-          </div>
-          <div className={styles.results}>
-            {results?.map((result, i) => {
-              return (
-                <div key={i}>
-                  <Link href={`/questions/${result._id}`}>{result.title}</Link>
-                </div>
-              );
-            })}
-          </div>
+    <form
+      className={styles.form}
+      onSubmit={(e) => {
+        e.preventDefault();
+        router.push(`/questions/${results[0]._id}`);
+        setSearch("");
+      }}
+    >
+      <div className={styles.searchbar}>
+        <img src="/search.svg" className="h-6"></img>
+        <input
+          onChange={(e) => setSearch(e.target.value)}
+          value={search}
+          placeholder="Search for a question by title..."
+          type="text"
+        />
+      </div>
+      {results.length > 0 && (
+        <div className={styles.results}>
+          {results?.map((result, i) => {
+            return (
+              <div key={i}>
+                <Link href={`/questions/${result._id}`}>
+                  <div className={styles.result} onClick={() => setSearch("")}>
+                    <img src={`${result.userImg}`} />
+                    <div>
+                      <h4>{result.title}</h4>
+                      <p>{result.userName}</p>
+                      <p>{result.content.slice(0, 80)}</p>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            );
+          })}
         </div>
-      </form>
-    </div>
+      )}
+    </form>
   );
 };
 
