@@ -9,6 +9,7 @@
   }
   button {
     margin-top: 5rem;
+    margin-bottom: 5rem;
     height: 40px;
   }
 }
@@ -112,4 +113,11 @@
     outline: 4px solid var(--nhgray) !important;
     border: 1px solid red !important;
   }
+}
+
+.notuser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10rem;
 }

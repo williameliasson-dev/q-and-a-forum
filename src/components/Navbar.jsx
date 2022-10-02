@@ -25,7 +25,6 @@ const Navbar = () => {
           <Button variant={"btn"} onClick={() => signIn()}>
             Log in
           </Button>
-          <Button variant={"blue"}>Sign up</Button>
         </>
       );
   }

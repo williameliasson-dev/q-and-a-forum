@@ -40,8 +40,12 @@
     align-items: flex-end;
     justify-content: left;
   }
+  p {
+    margin-left: 5px;
+  }
   img {
     height: 3rem;
+
     border-radius: 3px;
   }
   span {
@@ -149,5 +153,16 @@
     height: 42px;
     margin-top: 3rem;
     margin-bottom: 1rem;
+  }
+}
+
+.notuser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border-bottom: 1px solid var(--nhgray);
+  button {
+    margin-bottom: 3rem;
   }
 }

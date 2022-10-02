@@ -6,7 +6,7 @@ import Question from "models/question";
 import connectDB from "utils/connectDB";
 import Button from "@/components/Button";
 import renderDates from "utils/renderDates";
-import { useSession } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 import useSWR from "swr";
 
 const QuestionId = ({ question }) => {
@@ -152,16 +152,26 @@ const QuestionId = ({ question }) => {
             );
           })}
         </div>
-        <div className={styles["comment-post"]}>
-          <h2>Your Answer</h2>
-          <textarea
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-          ></textarea>
-          <Button variant={"blue"} onClick={() => postComment()}>
-            Post Your Answer
-          </Button>
-        </div>
+        {session && (
+          <div className={styles["comment-post"]}>
+            <h2>Your Answer</h2>
+            <textarea
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            ></textarea>
+            <Button variant={"blue"} onClick={() => postComment()}>
+              Post Your Answer
+            </Button>
+          </div>
+        )}
+        {!session && (
+          <div className={styles.notuser}>
+            <h2>You need to be logged in in order to answer..</h2>
+            <Button onClick={() => signIn()} variant={"blue"}>
+              Log in
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
