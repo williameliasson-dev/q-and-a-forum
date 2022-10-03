@@ -59,7 +59,10 @@ const QuestionId = ({ question }) => {
       redirect: "follow",
     };
 
-    await fetch("http://localhost:3000/api/questions/solution", requestOptions);
+    await fetch(
+      "https://q-and-a-forum-b1q6ulg3r-apspelet33.vercel.app/api/questions/solution",
+      requestOptions
+    );
   }
 
   async function postComment() {
@@ -72,7 +75,10 @@ const QuestionId = ({ question }) => {
       redirect: "follow",
     };
     setComment("");
-    await fetch("http://localhost:3000/api/comments/create", requestOptions);
+    await fetch(
+      "https://q-and-a-forum-b1q6ulg3r-apspelet33.vercel.app/api/comments/create",
+      requestOptions
+    );
   }
 
   async function postVote(type) {
@@ -89,7 +95,10 @@ const QuestionId = ({ question }) => {
       redirect: "follow",
     };
 
-    await fetch("http://localhost:3000/api/votes/create", requestOptions);
+    await fetch(
+      "https://q-and-a-forum-b1q6ulg3r-apspelet33.vercel.app/api/votes/create",
+      requestOptions
+    );
   }
 
   return (
