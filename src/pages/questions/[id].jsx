@@ -194,15 +194,15 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  // await connectDB();
+  await connectDB();
 
-  // const questions = await Question.find({}).select("_id");
+  const questions = await Question.find({}).select("_id");
 
-  // const paths = questions.map((questions) => {
-  //   return { params: { id: questions._id.toString() } };
-  // });
+  const paths = questions.map((questions) => {
+    return { params: { id: questions._id.toString() } };
+  });
   return {
-    paths: [],
-    fallback: "blocking", // false or 'blocking'
+    paths: paths,
+    fallback: false, // false or 'blocking'
   };
 }
