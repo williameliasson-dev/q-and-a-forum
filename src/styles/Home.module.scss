@@ -3,9 +3,7 @@
   background-size: cover;
   inset: 0px;
   position: absolute;
-  animation: slidein 1s;
-
-  // margin-top: -50px;
+  animation: slidein 1s ease-in;
 }
 
 @keyframes slidein {
