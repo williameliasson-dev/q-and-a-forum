@@ -16,7 +16,7 @@ if (!MONGODB_URI) {
 let cached = mongoose;
 
 if (!cached) {
-  cached = mongoose = { conn: null, promise: null };
+  cached = cmongoose = { conn: null, promise: null };
 }
 
 async function connectDB() {
@@ -29,8 +29,8 @@ async function connectDB() {
       bufferCommands: false,
     };
 
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      return mongoose;
+    cached.promise = mongoose.connect(MONGODB_URI, opts).then((cmongoose) => {
+      return cmongoose;
     });
   }
   cached.conn = await cached.promise;
