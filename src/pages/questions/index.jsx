@@ -71,7 +71,7 @@ const Questions = ({
           </div>
         </header>
         <div>
-          {questions.map((questions, i) => {
+          {questions?.map((questions, i) => {
             return (
               <div className={styles["question"]} key={i}>
                 <div className={styles["question-stats"]}>
@@ -190,11 +190,11 @@ export async function getServerSideProps(context) {
   const questions = await filterQuestions();
 
   const votes = await Promise.all(
-    questions.map(async (q) => await Vote.countDocuments({ qid: q._id }))
+    questions?.map(async (q) => await Vote.countDocuments({ qid: q._id }))
   );
 
   const comments = await Promise.all(
-    questions.map(async (q) => await Comment.countDocuments({ qid: q._id }))
+    questions?.map(async (q) => await Comment.countDocuments({ qid: q._id }))
   );
 
   return {
