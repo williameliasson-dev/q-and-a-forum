@@ -60,7 +60,7 @@ const QuestionId = ({ question }) => {
     };
 
     await fetch(
-      "https://q-and-a-forum-b1q6ulg3r-apspelet33.vercel.app/api/questions/solution",
+      "https://q-and-a-forum.vercel.app/api/questions/solution",
       requestOptions
     );
   }
@@ -76,7 +76,7 @@ const QuestionId = ({ question }) => {
     };
     setComment("");
     await fetch(
-      "https://q-and-a-forum-b1q6ulg3r-apspelet33.vercel.app/api/comments/create",
+      "https://q-and-a-forum.vercel.app/api/comments/create",
       requestOptions
     );
   }
@@ -96,7 +96,7 @@ const QuestionId = ({ question }) => {
     };
 
     await fetch(
-      "https://q-and-a-forum-b1q6ulg3r-apspelet33.vercel.app/api/votes/create",
+      "https://q-and-a-forum.vercel.app/api/votes/create",
       requestOptions
     );
   }
