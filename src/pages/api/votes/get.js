@@ -1,4 +1,3 @@
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import Vote from "models/vote";
 import connectDB from "utils/connectDB";
 
