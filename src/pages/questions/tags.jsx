@@ -76,5 +76,6 @@ export async function getStaticProps(context) {
       amountQuestions: JSON.parse(JSON.stringify(await amountQuestions)),
       answeredQuestions: JSON.parse(JSON.stringify(await answeredQuestions)),
     },
+    revalidate: 60,
   };
 }
