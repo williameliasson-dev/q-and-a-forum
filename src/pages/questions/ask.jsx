@@ -66,7 +66,7 @@ const Ask = () => {
     };
 
     const response = await fetch(
-      "http://localhost:3000/api/questions/create",
+      "https://q-and-a-forum.vercel.app/api/questions/create",
       requestOptions
     );
     const data = await response.json();
