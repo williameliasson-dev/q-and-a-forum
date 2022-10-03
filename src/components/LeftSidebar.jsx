@@ -17,7 +17,7 @@ const LeftSidebar = () => {
           <span>PUBLIC</span>
 
           <div className={styles.publiclinks}>
-            <Link href="/questions">
+            <Link href="/questions?page=1&filter=newest&tag=undefined">
               <a className={page === "/questions" ? styles.current : ""}>
                 Questions
               </a>

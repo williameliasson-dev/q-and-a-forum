@@ -115,7 +115,7 @@ const QuestionId = ({ question }) => {
           </div>
           <div className={styles["question-meta"]}>
             <span>
-              <img src={`${question.userImg}`}></img>
+              <img alt="user" src={`${question.userImg}`}></img>
               <p>{`${question.userName}`}</p>
             </span>
           </div>
@@ -144,7 +144,7 @@ const QuestionId = ({ question }) => {
                   )}
                   <p>answered {renderDates(comment.createdAt)} ago</p>
                   <div className={styles["comment-meta-user"]}>
-                    <img alt="userpicture" src={`${comment.userImg}`} />
+                    <img alt="user" src={`${comment.userImg}`} />
                     <p>{comment.userName}</p>
                   </div>
                 </div>

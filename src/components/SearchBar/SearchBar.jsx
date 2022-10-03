@@ -33,7 +33,7 @@ const SearchBar = () => {
       }}
     >
       <div className={styles.searchbar}>
-        <img src="/search.svg" className="h-6"></img>
+        <img alt="search" src="/search.svg" className="h-6"></img>
         <input
           onChange={(e) => setSearch(e.target.value)}
           value={search}
@@ -48,7 +48,7 @@ const SearchBar = () => {
               <div key={i}>
                 <Link href={`/questions/${result._id}`}>
                   <div className={styles.result} onClick={() => setSearch("")}>
-                    <img src={`${result.userImg}`} />
+                    <img alt="user" src={`${result.userImg}`} />
                     <div>
                       <h4>{result.title}</h4>
                       <p>{result.userName}</p>

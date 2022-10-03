@@ -7,7 +7,7 @@ import styles from "@/styles/Tags.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const tags = ({ tags, amountQuestions, answeredQuestions }) => {
+const Tags = ({ tags, amountQuestions, answeredQuestions }) => {
   const router = useRouter();
   let page = parseInt(router.query.page) || 1;
 
@@ -41,7 +41,7 @@ const tags = ({ tags, amountQuestions, answeredQuestions }) => {
   );
 };
 
-export default tags;
+export default Tags;
 
 export async function getStaticProps(context) {
   await connectDB();

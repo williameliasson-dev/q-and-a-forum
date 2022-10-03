@@ -1,4 +1,27 @@
-.c {
-  background-color: rebeccapurple;
+.container {
+  background: url("../../public/blob-bg.svg") no-repeat center center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  margin-top: -50px;
 }
 
+.welcome {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-top: -50px;
+  h1 {
+    font-weight: 400;
+  }
+  img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    width: 50rem;
+  }
+}

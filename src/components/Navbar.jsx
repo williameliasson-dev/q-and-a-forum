@@ -36,6 +36,7 @@ const Navbar = () => {
           <a className={styles.brand}>
             {" "}
             <img
+              alt="logo"
               src="/logo-stackoverflow.svg"
               className="h-[30px] object-fill m-2"
             ></img>{" "}
@@ -44,7 +45,7 @@ const Navbar = () => {
         <Link href="/">
           <a>Home</a>
         </Link>
-        <Link href="/questions?page=0&filter=newest">
+        <Link href="/questions?page=1&filter=newest&tag=undefined">
           <a>Questions</a>
         </Link>
         <Link href="https://github.com/williameliasson-dev/q-and-a-forum">

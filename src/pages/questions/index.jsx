@@ -29,13 +29,17 @@ const Questions = ({
 
   function renderHeader() {
     if (tag && !filter) {
-      return `[Tag] ${tag}`;
+      return <span>{tag}</span>;
     }
     if (filter && tag && tag !== "undefined") {
-      return `${filter}, [Tag] ${tag}`;
+      return (
+        <h1>
+          {filter} <span>{tag}</span>
+        </h1>
+      );
     }
     if ((filter && !tag) || tag === "undefined") {
-      return `${filter}`;
+      return <h1>{filter}</h1>;
     }
     return "All Questions";
   }
@@ -46,7 +50,7 @@ const Questions = ({
       <div className={styles.questions}>
         <header className={styles.head}>
           <div className={styles["head-top"]}>
-            <h1>{renderHeader()}</h1>
+            {renderHeader()}
             <a href="questions/ask">
               <Button variant={"blue"}>Ask a question</Button>
             </a>
@@ -62,7 +66,7 @@ const Questions = ({
               </Link>
             </div>
             <Button variant={"btn"}>
-              Filter<img src="filter.svg"></img>
+              Filter<img alt="filter" src="filter.svg"></img>
             </Button>
           </div>
         </header>
@@ -103,7 +107,7 @@ const Questions = ({
                   })}
                   <div>
                     <span className={styles["question-meta"]}>
-                      <img src={`${questions.userImg}`} />
+                      <img alt="user" src={`${questions.userImg}`} />
                       <p>{questions.userName}</p>
                       <p>asked {renderDates(questions.createdAt)} ago</p>
                     </span>
