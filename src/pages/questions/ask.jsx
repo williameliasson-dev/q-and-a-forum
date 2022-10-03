@@ -7,6 +7,7 @@ import { useSession, signIn } from "next-auth/react";
 const Ask = () => {
   const { data: session } = useSession();
   const [title, setTitle] = useState("");
+  const [posting, setPosting] = useState(false);
   const [content, setContent] = useState("");
   const [addTag, setAddTag] = useState("");
   const [tags, setTags] = useState([]);
@@ -31,7 +32,11 @@ const Ask = () => {
   function renderReview() {
     if (!error.body && !error.tags && !error.title) {
       return "Post your question";
-    } else return "Review your question";
+    }
+    if (posting === true) {
+      return "...";
+    }
+    return "Review your question";
   }
 
   function validateQuestion() {
@@ -55,7 +60,7 @@ const Ask = () => {
   }
 
   async function postQuestion() {
-    if (error.title || error.body) return;
+    if (error.title || error.body || error.tags) return;
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const requestOptions = {
@@ -64,14 +69,19 @@ const Ask = () => {
       body: JSON.stringify(newQuestion),
       redirect: "follow",
     };
+    setPosting(true);
 
     const response = await fetch(
       "https://q-and-a-forum-2apmq5q56-apspelet33.vercel.app/api/questions/create",
       requestOptions
     );
-    const data = await response.json();
 
-    router.push(`/questions/${data.savedDoc._id}`);
+    const data = await response.json();
+    if (await !data.savedDoc._id) {
+      setPosting(false);
+    } else {
+      router.push(`/questions/${data.savedDoc._id}`);
+    }
   }
 
   if (!session) {
@@ -161,7 +171,11 @@ const Ask = () => {
               </div>
             </div>
           </div>
-          <Button onClick={() => validateQuestion()} variant={"blue"}>
+          <Button
+            disabled={posting}
+            onClick={() => validateQuestion()}
+            variant={"blue"}
+          >
             {renderReview()}
           </Button>
         </form>
