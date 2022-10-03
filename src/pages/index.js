@@ -21,7 +21,7 @@ export default function Home() {
             <Link href="/questions/ask">
               <Button variant={"blue"}>Post question</Button>
             </Link>
-            <Link href="/questions">
+            <Link href="/questions?page=1&filter=newest&tag=undefined">
               <Button variant={"btn"}>See questions</Button>
             </Link>
           </div>
