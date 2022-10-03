@@ -69,7 +69,7 @@ const Ask = () => {
     setPosting(true);
 
     const response = await fetch(
-      "https://q-and-a-forum-2apmq5q56-apspelet33.vercel.app/api/questions/create",
+      "https://q-and-a-forum.vercel.app/api/questions/create",
       requestOptions
     );
 
