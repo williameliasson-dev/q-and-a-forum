@@ -11,6 +11,7 @@ import useSWR from "swr";
 
 const QuestionId = ({ question }) => {
   const [comment, setComment] = useState("");
+  const [postingComment, setPostingComment] = useState(false);
   const { data: session } = useSession();
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -66,6 +67,7 @@ const QuestionId = ({ question }) => {
   }
 
   async function postComment() {
+    setPostingComment(true);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const requestOptions = {
@@ -75,10 +77,14 @@ const QuestionId = ({ question }) => {
       redirect: "follow",
     };
     setComment("");
-    await fetch(
+    const sendComment = await fetch(
       "https://q-and-a-forum.vercel.app/api/comments/create",
       requestOptions
     );
+    console.log(await sendComment.status);
+    if ((await sendComment.status) === 200) {
+      setPostingComment(false);
+    }
   }
 
   async function postVote(type) {
@@ -168,7 +174,11 @@ const QuestionId = ({ question }) => {
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             ></textarea>
-            <Button variant={"blue"} onClick={() => postComment()}>
+            <Button
+              disabled={postingComment}
+              variant={"blue"}
+              onClick={() => postComment()}
+            >
               Post Your Answer
             </Button>
           </div>
@@ -212,6 +222,6 @@ export async function getStaticPaths() {
   });
   return {
     paths: paths,
-    fallback: false, // false or 'blocking'
+    fallback: "blocking", // false or 'blocking'
   };
 }
