@@ -6,12 +6,14 @@
 }
 
 .tags {
+  border-left: 1px solid var(--nhgray);
+  height: calc(100vh - 50px);
   display: flex;
+  padding-left: 2rem;
+  padding-top: 2rem;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-top: 5rem;
-  margin-bottom: auto;
   gap: 3rem;
   .tag {
     div {

@@ -9,9 +9,10 @@ $nhgray: rgb(207, 207, 207);
 }
 
 .questions {
-  width: 80%;
+  flex: 1;
   border-left: 1px solid var(--nhgray);
-  padding-bottom: 200%;
+  min-height: calc(100vh - 50px);
+  padding-bottom: 2rem;
   h1,
   h2 {
     font-weight: 400;
@@ -145,5 +146,6 @@ $nhgray: rgb(207, 207, 207);
   background-color: hsl(203, 89%, 93%);
   padding: 5px;
   margin: 2px;
+  margin-left: 0;
   border-radius: 5px;
 }

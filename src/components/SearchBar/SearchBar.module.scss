@@ -10,9 +10,16 @@
   align-items: center;
   border: 1px solid var(--nhgray);
   border-radius: 4px;
+  margin-left: 1rem;
   &:focus-within {
     outline: 4px solid var(--nhgray);
     border: 1px solid rgb(0, 157, 255);
+  }
+
+  img {
+    width: 2rem;
+    height: 2rem;
+    margin: 0rem 0.4rem;
   }
 
   input {

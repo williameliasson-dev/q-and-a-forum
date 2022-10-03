@@ -23,15 +23,14 @@
   > a {
     font-size: 1.5rem;
     display: flex;
+    padding: 0.4rem 1.2rem;
     justify-content: center;
     align-items: center;
     text-decoration: none;
     border-radius: 30px;
-    width: 12rem;
-    height: 3rem;
     color: var(--ablack);
     &:hover {
-      background-color: var(--nhgray);
+      background-color: rgb(227, 230, 232);
       color: black;
     }
   }
@@ -43,7 +42,7 @@
   border-radius: 0 !important;
   width: auto !important;
   align-items: center;
-  margin: 0 2rem 0 0 !important;
+
   img {
     object-fit: fill;
     height: 33px;

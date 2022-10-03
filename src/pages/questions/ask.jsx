@@ -41,16 +41,13 @@ const Ask = () => {
 
   function validateQuestion() {
     let newError = { title: null, body: null, tags: null };
-    if (title.length > 100 || title.length < 15) {
+    if (title.length > 100 || title.length < 3) {
       newError.title =
-        "Title cannot be longer than 100 or shorter than 15 characters";
+        "Title cannot be longer than 100 or shorter than 3 characters";
     }
-    if (content.length < 100 || content.length > 1000) {
+    if (content.length < 10 || content.length > 1000) {
       newError.body =
-        "Body cannot be longer than 1000 or shorter than 100 characters";
-    }
-    if (tags.length < 1) {
-      newError.tags = "You need atleast one tag";
+        "Body cannot be longer than 1000 or shorter than 10 characters";
     }
 
     if (!newError.body && !newError.tags && !newError.title) {

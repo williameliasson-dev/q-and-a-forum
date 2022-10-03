@@ -32,15 +32,16 @@ const SearchBar = () => {
         setSearch("");
       }}
     >
-      <div className={styles.searchbar}>
-        <img alt="search" src="/search.svg" className="h-6"></img>
+      <label htmlFor="search-input" className={styles.searchbar}>
+        <img alt="search" src="/search.svg"></img>
         <input
+          id="search-input"
           onChange={(e) => setSearch(e.target.value)}
           value={search}
           placeholder="Search for a question by title..."
           type="text"
         />
-      </div>
+      </label>
       {results.length > 0 && (
         <div className={styles.results}>
           {results?.map((result, i) => {

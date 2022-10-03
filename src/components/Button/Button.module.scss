@@ -17,6 +17,10 @@
   &:hover {
     background-color: var(--bg-hover);
   }
+
+  &:disabled {
+    opacity: 0.6;
+  }
 }
 
 .blue {
