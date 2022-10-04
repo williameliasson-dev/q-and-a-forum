@@ -4,7 +4,6 @@ import Link from "next/link";
 import styles from "./SearchBar.module.scss";
 import useSWR from "swr";
 import { useRouter } from "next/router";
-import Button from "../Button";
 
 const SearchBar = () => {
   const router = useRouter();

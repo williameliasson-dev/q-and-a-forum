@@ -12,7 +12,7 @@ const Navbar = () => {
     if (session) {
       return (
         <div className={styles.userInfo}>
-          <img src={`${session.user.image}`}></img>
+          <img alt="user" src={`${session.user.image}`}></img>
           <Button variant={"blue"} onClick={() => signOut()}>
             {" "}
             Log out
