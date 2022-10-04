@@ -4,7 +4,7 @@
 
 ## Description
 Made this project in education purpose and to have something to show in my portfolio.
-I copied parts of stackoverflows design but it is not meant to be a pixel perfect clone in any way.
+I copied parts of stackoverflows design but it is not meant to be a pixel perfect clone in anyway.
 
 ## Stack
 This project was made using mongodb, nextjs as frontend & backend and scss for styling.
