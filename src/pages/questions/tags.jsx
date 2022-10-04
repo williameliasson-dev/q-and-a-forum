@@ -4,6 +4,7 @@ import connectDB from "utils/connectDB";
 import LeftSidebar from "@/components/LeftSidebar";
 import Pagination from "@/components/Pagination/Pagination";
 import styles from "@/styles/Tags.module.scss";
+import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 

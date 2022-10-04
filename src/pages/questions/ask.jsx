@@ -3,6 +3,7 @@ import styles from "@/styles/Ask.module.scss";
 import Button from "@/components/Button";
 import { useRouter } from "next/router";
 import { useSession, signIn } from "next-auth/react";
+import Head from "next/head";
 
 const Ask = () => {
   const { data: session } = useSession();

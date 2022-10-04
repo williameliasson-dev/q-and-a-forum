@@ -6,6 +6,7 @@ import Question from "models/question";
 import connectDB from "utils/connectDB";
 import Button from "@/components/Button";
 import renderDates from "utils/renderDates";
+import Head from "next/head";
 import { useSession, signIn } from "next-auth/react";
 import useSWR from "swr";
 

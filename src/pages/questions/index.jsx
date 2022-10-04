@@ -10,6 +10,7 @@ import Vote from "models/vote";
 import Comment from "models/comment";
 import renderDates from "utils/renderDates";
 import Pagination from "@/components/Pagination/Pagination";
+import Head from "next/head";
 
 const Questions = ({
   questions,
