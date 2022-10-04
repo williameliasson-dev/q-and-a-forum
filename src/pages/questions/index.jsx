@@ -46,6 +46,11 @@ const Questions = ({
 
   return (
     <div className={styles.container}>
+      <Head>
+        <title>q&a Questions</title>
+        <meta name="description" content="q&a forum project!" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <LeftSidebar />
       <div className={styles.questions}>
         <header className={styles.head}>

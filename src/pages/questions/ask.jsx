@@ -98,6 +98,11 @@ const Ask = () => {
   } else
     return (
       <div className={styles["ask-container"]}>
+        <Head>
+          <title>q&a Ask question</title>
+          <meta name="description" content="q&a forum project!" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
         <form onSubmit={(e) => e.preventDefault()}>
           <h1>Ask a public question</h1>
           <div className={styles.ask}>

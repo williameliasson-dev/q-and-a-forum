@@ -13,6 +13,11 @@ const Tags = ({ tags, amountQuestions, answeredQuestions }) => {
 
   return (
     <div className={styles.wrapper}>
+      <Head>
+        <title>q&a Tags</title>
+        <meta name="description" content="q&a forum project!" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <LeftSidebar />
       <div className={styles.tags}>
         {tags?.map((tag, i) => {

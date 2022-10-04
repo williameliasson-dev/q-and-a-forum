@@ -109,6 +109,11 @@ const QuestionId = ({ question }) => {
 
   return (
     <div className={styles.wrapper}>
+      <Head>
+        <title>q&a Question</title>
+        <meta name="description" content="q&a forum project!" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <LeftSidebar />
       <div className={styles.question}>
         <div className={styles["question-top"]}>
